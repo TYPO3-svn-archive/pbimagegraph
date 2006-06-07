@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Language labels</description>
+		<type>database</type>
+		<csh_table></csh_table>
+		<fileId>EXT:tx_pbimagegraph/lang/locallang_db.xml</fileId>
+		<ext_filename_template>EXT:tx_pbimagegraph/lang/###LANGKEY###.locallang_db.xml</ext_filename_template>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.list_type_pi1">Image_Graph example</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>
