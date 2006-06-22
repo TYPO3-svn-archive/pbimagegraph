@@ -125,10 +125,6 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 				$GLOBALS['TT']->decStackPointer();
 			} else {	
 				switch($strCobjName) {
-					// Main
-					case 'CANVAS':
-						self::CANVAS($arrConf);
-					break;
 					case 'PLOTAREA':
 						$objOutput =& self::PLOTAREA($arrConf);
 					break;
@@ -168,7 +164,7 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 					break;
 					// Data
 					case 'DATASET':
-						$objOutput =& self::DATASET($arrConf);
+						$objOutput = self::DATASET($arrConf);
 					break;
 					case 'RANDOM':
 						$objOutput = self::RANDOM($arrConf);
@@ -199,7 +195,7 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 					break;
 					// Various
 					case 'LEGEND':
-						$objOutput = self::LEGEND($arrConf);
+						$objOutput = self::LEGEND($objRef,$arrConf);
 					break;
 					// Layout
 					case 'VERTICAL':
@@ -216,47 +212,60 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 	
 	function PLOTAREA($arrConf) {
 		$id = $arrConf['id'];
-		$Plotarea = tx_pbimagegraph::factory('plotarea');
+		$strAxisX = $arrConf['axis.']['x.']['type']?'tx_pbimagegraph_Axis_'.ucfirst($arrConf['axis.']['x.']['type']):'tx_pbimagegraph_Axis_Category';
+		$strAxisY = $arrConf['axis.']['y.']['type']?'tx_pbimagegraph_Axis_'.ucfirst($arrConf['axis.']['y.']['type']):'tx_pbimagegraph_Axis';
+		$strDirection = $arrConf['direction']?$arrConf['direction']:'vertical';
+		$Plotarea = tx_pbimagegraph::factory('plotarea',array($strAxisX,$strAxisY,$strDirection));
 		self::setElementProperties($Plotarea,$arrConf);
 		self::setPlotareaProperties($Plotarea,$arrConf);
 		self::cObjGet($arrConf,$Plotarea);
-		eval("\$this->".$id." =& \$Plotarea;");
+		if ($id) {
+			eval("\$this->".$id." =& \$Plotarea;");
+		}
 		return $Plotarea;
 	}
 	
-	function AREA(&$Plotarea,$arrConf) {
-		$plottype = $arrConf['plottype']; // normal, stacked, stacked100pct
-		if (is_array($arrConf)) {
-			$sKeyArray=t3lib_TStemplate::sortedKeyList($arrConf);
-			foreach($sKeyArray as $theKey) {		
-				$theValue=$arrConf[$theKey];
-				if (intval($theKey) && !strstr($theKey,'.')) {
-					$conf=$arrConf[$theKey.'.'];
-					if ($theValue=='DATASET') {
-						$Datasets = self::cObjGetSingle($theValue,$conf);
-					}
-				}
-			}
-		}			
-		$Plot =& $Plotarea->addNew('area', array($Datasets,$plottype));
-		self::setElementProperties($Plot,$arrConf);
+	function LINE(&$objRef,$arrConf) {
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);	
+		$objLine =& $objRef->addNew('line', $arrDatasets[0]);
+		self::setElementProperties($objLine,$arrConf);
+		self::setMarker($objLine,$arrConf);
 	}
 	
-	function LINE(&$objRef,$arrConf) {
-		if (is_array($arrConf)) {
-			$sKeyArray=t3lib_TStemplate::sortedKeyList($arrConf);
-			foreach($sKeyArray as $theKey) {		
-				$theValue=$arrConf[$theKey];
-				if (intval($theKey) && !strstr($theKey,'.')) {
-					$conf=$arrConf[$theKey.'.'];
-					if ($theValue=='DATASET') {
-						$Datasets = self::cObjGetSingle($theValue,$conf);
-					}
-				}
-			}
-		}	
-		$objLine =& $objRef->addNew('line', $Datasets[0]);
-		self::setElementProperties($objLine,$arrConf);
+	function AREA(&$objRef,$arrConf) {
+		$strPlotType = $arrConf['plottype']; // normal, stacked, stacked100pct	
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);	
+		$objArea =& $objRef->addNew('area', array($arrDatasets,$strPlotType));
+		self::setElementProperties($objArea,$arrConf);
+		self::setMarker($objArea,$arrConf);
+	}
+	
+	function BAR(&$objRef,$arrConf) {
+		$strPlotType = $arrConf['plottype']; // normal, stacked, stacked100pct
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);	
+		$objBar =& $objRef->add(tx_pbimagegraph::factory('bar',array($arrDatasets,$strPlotType)));
+		self::setElementProperties($objBar,$arrConf);
+		self::setMarker($objBar,$arrConf);
+	}
+	
+	function SMOOTH_AREA(&$objRef,$arrConf) {
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);
+		$objSmoothArea =& $objRef->addNew('smooth_area', array(&$arrDatasets));
+		self::setElementProperties($objSmoothArea,$arrConf);
+		self::setMarker($objSmoothArea,$arrConf);
+	}
+	
+	function PIE(&$objRef,$arrConf) {
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);
+		$objPie =& $objRef->addNew('pie', array(&$arrDatasets));
+		self::setElementProperties($objPie,$arrConf);
+	}
+	
+	function SCATTER(&$objRef,$arrConf) {
+		$arrDatasets = self::setDatasets($arrConf['dataset.']);	
+		$objScatter =& $objRef->add(tx_pbimagegraph::factory('scatter',array($arrDatasets[0])));
+		self::setElementProperties($objScatter,$arrConf);
+		self::setMarker($objScatter,$arrConf);
 	}
 	
 	function VERT_HOR(&$Graph,$arrConf,$strCobjName) {
@@ -303,31 +312,65 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 		$Grid =& $objRef->addNew($strType, $intAxis);
 		self::setElementProperties($Grid,$arrConf);
 	}
-
-
-	function DATASET($arrConf) {
-		$cObjCount = 0;	
+	
+	function LEGEND(&$objRef='',$arrConf) {
+		if ($objRef) {
+			$Legend =& $objRef->addNew('legend');
+		} else {
+			$Legend = tx_pbimagegraph::factory('legend');
+		}
+		self::setElementProperties($Legend,$arrConf);
+		self::setLegendProperties($Legend,$arrConf);
+		return $Legend;		
+	}
+	
+	function setDatasets($arrConf) {
+		$intCount = 0;
 		if (is_array($arrConf)) {
-			$sKeyArray=t3lib_TStemplate::sortedKeyList($arrConf);
-			foreach($sKeyArray as $theKey) {		
-				$theValue=$arrConf[$theKey];
-				if (intval($theKey) && !strstr($theKey,'.')) {
-					$conf=$arrConf[$theKey.'.']; 
-					$Datasets[$cObjCount] = self::cObjGetSingle($theValue,$conf);
-					$cObjCount++;
+			$arrKeys=t3lib_TStemplate::sortedKeyList($arrConf);
+			foreach($arrKeys as $strKey) {		
+				$strValue=$arrConf[$strKey];
+				if (intval($strKey) && !strstr($strKey,'.')) {
+					switch($strValue) {
+						case 'trivial':
+							$objDatasets[$intCount] =& tx_pbimagegraph::factory('dataset');
+							self::datasetTrivial($objDatasets[$intCount],$arrConf[$strKey.'.']);
+						break;
+						case 'random':
+							$objDatasets[$intCount] = self::datasetRandom($arrConf[$strKey.'.']);
+						break;
+					}
+					$intCount++;
 				}
 			}
 		}
-		return $Datasets;
+		return $objDatasets;
 	}
-
+	
+	function datasetTrivial(&$objRef,$arrConf) {
+		if (is_array($arrConf)) {
+			$arrKeys=t3lib_TStemplate::sortedKeyList($arrConf);
+			foreach($arrKeys as $strKey) {		
+				$strValue=$arrConf[$strKey];
+				if (intval($strKey) && !strstr($strKey,'.')) {
+					if($strValue=='point') {
+						$mixX = $arrConf[$strKey.'.']['x'];
+						$mixY = $arrConf[$strKey.'.']['y'];
+						$strId = $arrConf[$strKey.'.']['id'];
+						$objRef->addPoint($mixX, $mixY, $strId);
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Create a random dataset
 	 *
 	 * @param	array		Array of TypoScript properties
 	 * @return	obj		    Single dataset
 	 */		
-	function RANDOM($arrConf) {
+	function datasetRandom($arrConf) {
 		$intCount = $arrConf['count'];
 		$intMinimum = $arrConf['minimum'];
 		$intMaximum = $arrConf['maximum'];
@@ -338,11 +381,61 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 		return $objRandom;
 	}
 	
-	function LEGEND($arrConf) {
-		$Legend = tx_pbimagegraph::factory('legend');
-		self::setElementProperties($Legend,$arrConf);
-		self::setLegendProperties($Legend,$arrConf);
-		return $Legend;		
+	function setMarker(&$objRef,$arrConf) {
+		if ($arrConf['marker']) {
+			switch($arrConf['marker']) {
+				case 'value':
+					$intAxis = 0;
+					eval("\$intAxis = IMAGE_GRAPH_".strtoupper($arrConf['marker.']['useValue']).";");
+					$objMarker =& $objRef->addNew('tx_pbimagegraph_Marker_'.ucfirst($arrConf['marker']),$intAxis);
+				break;
+				default:
+					$objMarker =& $objRef->addNew('tx_pbimagegraph_Marker_'.ucfirst($arrConf['marker']));
+			}
+			self::setMarkerProperties($objMarker,$arrConf['marker.']);
+			self::setElementProperties($objMarker,$arrConf['marker.']);
+			if ($arrConf['marker.']['pointing']) {
+				$objPointing =& $objRef->addNew('tx_pbimagegraph_Marker_Pointing_'.ucfirst($arrConf['marker.']['pointing']), array($arrConf['marker.']['pointing.']['radius'], $objMarker));		
+				$objSetMarker =& $objPointing;
+			} else {
+				$objSetMarker =& $objMarker;
+			}
+
+			$objRef->setMarker($objSetMarker);
+		}
+	}
+	
+	function setMarkerProperties(&$objRef,$arrConf) {
+		foreach($arrConf as $strKey => $strValue) {
+			switch($strKey) {
+				// element
+				case 'maxRadius':
+					$objRef->setMaxRadius($strValue);
+				break;
+				case 'pointX':
+					$objRef->setPointX($strValue);
+				break;
+				case 'pointY':
+					$objRef->setPointY($strValue);
+				break;
+				case 'markerStart':
+					//$objRef->setMarkerStart(& $markerStart);
+				break;
+				case 'dataPreProcessor':
+					self::setDataPreprocessor($objRef,$strValue,$arrConf['dataPreProcessor.']);
+				break;
+			}
+		}	
+	}
+	
+	function setDataPreprocessor(&$objRef,$strType,$arrConf) {
+		switch($strType) {
+			case 'array':
+			
+			break;
+			default:
+				$objRef->setDataPreProcessor(tx_pbimagegraph::factory('tx_pbimagegraph_DataPreprocessor_'.ucfirst($strType), $arrConf['format']));
+		}
 	}
 	
 	function setElementProperties(&$objRef,$arrConf) {
@@ -431,13 +524,28 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 			$objRef->setFillStyle(tx_pbimagegraph::factory('gradient', array($intDirection, $strStartColor, $strEndColor)));
 		} elseif ($strValue=='fill_array') {
 			$objFillArray =& tx_pbimagegraph::factory('tx_pbimagegraph_Fill_Array');
-			if (is_array($arrConf['addColor.'])) {
-				foreach ($arrConf['addColor.'] as $strValue) {
-					$objFillArray->addColor($strValue);
+			if (is_array($arrConf)) {
+				$arrKeys=t3lib_TStemplate::sortedKeyList($arrConf);
+				foreach($arrKeys as $strKey) {		
+					$strType=$arrConf[$strKey];
+					if (intval($strKey) && !strstr($strKey,'.')) {
+						switch($strType) {
+							case 'addColor':
+								$strColor = $arrConf[$strKey.'.']['color'];
+								$objFillArray->addColor($strColor);
+							break;
+							case 'gradient':
+								eval("\$intDirection = IMAGE_GRAPH_GRAD_".strtoupper($arrConf[$strKey.'.']['direction']).";");
+								$strStartColor = $arrConf[$strKey.'.']['startColor'];
+								$strEndColor = $arrConf[$strKey.'.']['endColor'];
+								$intSolidColor = $arrConf[$strKey.'.']['color'];
+								$strId = $arrConf[$strKey.'.']['id'];
+								$objFillArray->addNew('gradient', array($intDirection, $strStartColor, $strEndColor), $strId);
+							break;
+						}
+					}
 				}
-			} else {
-				$objFillArray->addColor($arrConf['addColor']);
-			}
+			}	
 			$objRef->setFillStyle($objFillArray);
 		} elseif ($strValue=='image') {
 			$objImage =& Image_Graph::factory('Image_Graph_Fill_Image',$strImage);
@@ -514,24 +622,83 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 					$objRef->clearAxis();
 				break;
 				case 'axisPadding':
-					$objRef->setAxisPadding($value, $position = false);
+					//$objRef->setAxisPadding($value, $position = false);
 				break;
 			}
 		}
 	}
 	
 	function getAxis(&$objRef,$arrConf) {
+		$intAxis = 1;
 		foreach($arrConf as $strKey => $strValue) {
 			$strKey = rtrim($strKey, '.');
-			$objAxis =& $objRef->getAxis($strKey);
+			eval("\$intAxis = IMAGE_GRAPH_AXIS_".strtoupper($strKey).";");
+			$objAxis =& $objRef->getAxis($intAxis);
 			self::setAxisProperties($objAxis,$strValue);
+			self::setElementProperties($objAxis,$strValue);
+			if (is_array($strValue)) {	
+				$arrKeys=t3lib_TStemplate::sortedKeyList($strValue);
+				foreach($arrKeys as $strKey) {	
+					$strCobjName=$strValue[$strKey];
+					if (intval($strKey) && !strstr($strKey,'.')) {
+						$arrConfAxis=$strValue[$strKey.'.'];
+						switch($strCobjName) {
+							case 'marker':
+								self::setAxisMarker($objRef,$intAxis,$arrConfAxis);
+							break;
+						}
+					}
+				}
+			}
 		}   
 	}
 	
-	function setAxisProperties(&$objRef,$arrConf) {
+	function setAxisMarker(&$objRef,$intAxis,$arrConf) {
+		$strType = $arrConf['type'];
+		$Marker =& $objRef->addNew('tx_pbimagegraph_Axis_Marker_'.ucfirst($strType), null, $intAxis);
+		self::setElementProperties($Marker,$arrConf);
+		switch($strType) {
+			case 'area':
+				self::setAxisMarkerAreaProperties($Marker,$arrConf);
+			break;
+			case 'line':
+				self::setAxisMarkerLineProperties($Marker,$arrConf);
+			break;
+		}		
+	}
+	
+	function setAxisMarkerAreaProperties(&$objRef,$arrConf) {
 		foreach($arrConf as $strKey => $strValue) {
 			$strKey = rtrim($strKey, '.');
 			switch($strKey) {
+				case 'lowerBound':
+					$objRef->setLowerBound($strValue); 
+				break;
+				case 'upperBound':
+					$objRef->setUpperBound($strValue); 
+				break;
+			}
+		}
+	}
+	
+	function setAxisMarkerLineProperties(&$objRef,$arrConf) {
+		foreach($arrConf as $strKey => $strValue) {
+			$strKey = rtrim($strKey, '.');
+			switch($strKey) {
+				case 'value':
+					$objRef->setValue($strValue); 
+				break;
+			}
+		}
+	}
+	
+	function setAxisProperties(&$objRef,$arrConf,$intLevel=1) {
+		foreach($arrConf as $strKey => $strValue) {
+			$strKey = rtrim($strKey, '.');
+			switch($strKey) {
+				case 'level':
+					self::getAxisLevel($objRef,$strValue);
+				break;
 				case 'label':
 					$objRef->showLabel($strValue);  
 				break;
@@ -548,13 +715,13 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 					$objRef->hideArrow();
 				break;
 				case 'labelInterval':
-					//$objRef->setLabelInterval($labelInterval = 'auto', $level = 1);
+					self::setLabelInterval($objRef,$strValue,$intLevel);
 				break;
 				case 'labelOption':
 					//$objRef->setLabelOption($option, $value, $level = 1);
 				break;
 				case 'labelOptions':
-					//$objRef->setLabelOptions($options, $level = 1);
+					self::setLabelOptions($objRef,$strValue,$intLevel);
 				break;
 				case 'title':
 					//$objRef->setTitle($title, $font = false);
@@ -563,10 +730,10 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 					$objRef->setFixedSize($strValue);
 				break;
 				case 'addMark':
-					//$objRef->addMark($value, $value2 = false, $text = false);
+					self::axisAddMark($objRef,$strValue);
 				break;
 				case 'tickOptions':
-					//$objRef->setTickOptions($start, $end, $level = 1);
+					$objRef->setTickOptions($strValue['start'], $strValue['end'], $intLevel);
 				break;
 				case 'inverted':
 					$objRef->setInverted($strValue);
@@ -576,6 +743,61 @@ class tx_pbimagegraph_pi1 extends tslib_pibase {
 				break;
 			}
 		}		
+	}
+	
+	/**
+	 * 
+	 * 'showtext' true or false
+	 * 'showoffset' true or false
+	 * 'font' The font options as an associated array
+	 * 'position' 'inside' or 'outside'
+	 * 'format' To format the label text according to a sprintf statement
+	 * 'dateformat' To format the label as a date, fx. j. M Y = 29. Jun 2005
+	 */
+	function setLabelOptions(&$objRef,$arrConf,$intLevel) {
+		if (is_array($arrConf)) {
+			foreach ($arrConf as $strKey => $strValue) {
+				if ($strKey=='showtext' || $strKey=='showoffset') {
+					$strValue=$strValue==1?true:false;
+				}
+				$arrLabelOptions[rtrim($strKey, '.')] = $strValue;
+			}
+		}
+		$objRef->setLabelOptions($arrLabelOptions, $intLevel);
+	}
+	
+	function setLabelInterval(&$objRef,$arrConf,$intLevel) {
+		if (is_array($arrConf)) {
+			foreach ($arrConf as $strKey => $strValue) {
+				if (intval(rtrim($strKey, '.'))) {
+					$arrInterval[] = $strValue['value'];
+				}
+			}
+			$objRef->setLabelInterval($arrInterval,$intLevel);
+		} else {
+			$objRef->setLabelInterval($arrConf,$intLevel);
+		}
+	}
+	
+	function getAxisLevel(&$objRef,$arrConf) {
+		if (is_array($arrConf)) {
+			foreach ($arrConf as $strKey => $strValue) {
+				if (intval(rtrim($strKey, '.'))) {
+					self::setAxisProperties(&$objRef,$strValue,intval(rtrim($strKey, '.')));
+				}
+			}
+		}
+	}
+	function axisAddMark(&$objRef,$arrConf) {
+		if (is_array($arrConf)) {
+			foreach ($arrConf as $strKey => $strValue) {
+				if (intval(rtrim($strKey, '.'))) {
+					$strValue['value2'] = isset($strValue['value2'])?$strValue['value2']:false;
+					$strValue['text'] = isset($strValue['text'])?$strValue['text']:false;
+					$objRef->addMark($strValue['value'],$strValue['value2'],$strValue['text']);
+				}
+			}
+		}
 	}
 	
 	function setLegendProperties(&$objRef,$arrConf) {

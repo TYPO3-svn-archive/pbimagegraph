@@ -1,0 +1,107 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 500
+	height = 200
+	antialias = true
+	font.default = verdana
+	font.default {
+		size = 9
+	}
+	10 = PLOTAREA
+	10 {
+		id = plotarea1
+		10 = LINE
+		10 {
+			lineColor = red
+			dataset {
+				10 = trivial
+				10 {
+					10 = point
+					10 {
+						x = this
+						y = 1
+					}
+					20 = point
+					20 {
+						x = can
+						y = 3
+					}
+					30 = point
+					30 {
+						x = make
+						y = 2
+					}
+					40 = point
+					40 {
+						x = correctly
+						y = 1
+					}
+				}
+			}
+		}
+		20 = LINE
+		20 {
+			lineColor = blue
+			dataset {
+				10 = trivial
+				10 {
+					10 = point
+					10 {
+						x = sentence
+						y = 1
+					}
+					20 = point
+					20 {
+						x = can
+						y = 1
+					}
+					30 = point
+					30 {
+						x = sense
+						y = 2
+					}
+					40 = point
+					40 {
+						x = written
+						y = 2
+					}
+					50 = point
+					50 {
+						x = correctly
+						y = 2
+					}
+				}
+			}
+		}
+		30 = LINE
+		30 {
+			lineColor = green
+			dataset {
+				10 = trivial
+				10 {
+					10 = point
+					10 {
+						x = actually
+						y = 3
+					}
+					20 = point
+					20 {
+						x = make
+						y = 2
+					}
+					30 = point
+					30 {
+						x = if
+						y = 3
+					}
+					40 = point
+					40 {
+						x = written
+						y = 1
+					}
+				}
+			}
+		}
+	}
+}

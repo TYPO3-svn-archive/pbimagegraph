@@ -1,0 +1,125 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 7
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Testing Category Axis
+			font {
+				size = 10
+			}
+		}
+		20 = PLOTAREA
+		20 {
+			axis {
+				y {
+					type = category
+				}
+			}
+			10 = SCATTER
+			10 {
+				dataset {
+					10 = trivial
+					10 {
+						10 = point
+						10 {
+							x = Germany
+							y = England
+						}
+						20 = point
+						20 {
+							x = Denmark
+							y = France
+						}
+						30 = point
+						30 {
+							x = Sweden
+							y = Denmark
+						}
+						40 = point
+						40 {
+							x = England
+							y = France
+						}
+						50 = point
+						50 {
+							x = Norway
+							y = Finland
+						}
+						60 = point
+						60 {
+							x = Denmark
+							y = Finland
+						}
+						70 = point
+						70 {
+							x = Iceland
+							y = Germany
+						}
+						80 = point
+						80 {
+							x = Norway
+							y = France
+						}
+					}
+				}
+				marker = cross
+				marker {
+					fillColor = blue
+					lineColor = black
+				}
+			}
+			20 = SCATTER
+			20 {
+				dataset {
+					10 = trivial
+					10 {
+						10 = point
+						10 {
+							x = Sweden
+							y = France
+						}
+						20 = point
+						20 {
+							x = Austria
+							y = Germany
+						}
+						30 = point
+						30 {
+							x = Norway
+							y = Holland
+						}
+						40 = point
+						40 {
+							x = Denmark
+							y = Germany
+						}
+						50 = point
+						50 {
+							x = Sweden
+							y = Holland
+						}
+						60 = point
+						60 {
+							x = Iceland
+							y = Denmark
+						}
+					}
+				}
+				marker = cross
+				marker {
+					fillColor = yellow
+					lineColor = black
+				}
+			}
+		}
+	}
+}
