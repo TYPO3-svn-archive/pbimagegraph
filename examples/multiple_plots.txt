@@ -1,0 +1,126 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 400
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 8
+		10 = VERTICAL
+		10 {
+			percentage = 90
+			10 = TITLE
+			10 {
+				text = Multiple Plots
+				alignment = left
+				font {
+					size = 11
+				}
+			}
+			# TITLE end
+			20 = TITLE
+			20 {
+				text = This is a demonstration of title alignment
+				alignment = left
+				font {
+					size = 7
+				}
+			}
+			# TITLE end
+		}
+		# VERTICAL end
+		20 = PLOTAREA
+		20 {
+			axis {
+				x {
+					dataPreProcessor = array
+					dataPreProcessor {
+						0 = Jan-Feb 2004
+						1 = Mar-Apr 2004 
+						2 = May-Jun 2004 
+						3 = Jul-Aug 2004 
+						4 = Sep-Oct 2004 
+						5 = Nov-Dev 2004 
+						6 = Jan-Feb 2005 
+						7 = Mar-Apr 2005 
+						8 = May-Jun 2005 
+						9 = Jul-Aug 2005 
+					}
+					font {
+						angle = 90
+					}			
+				}
+			}
+			10 = GRID
+			10 {
+				type = bar
+				axis = y
+				fillStyle = gradient
+				fillStyle {
+					direction = vertical
+					startColor = white
+					endColor = lightgrey
+				}
+			}
+			# GRID end
+			20 = SMOOTH_AREA
+			20 {
+				fillColor = red@0.2
+				dataset {
+					10 = random
+					10 {
+						count = 10
+						minimum = 20
+						maximum = 100
+						includeZero = true
+					}
+				}
+			}
+			# SMOOTH_AREA end
+			30 = LINE
+			30 {
+				lineColor = blue@0.2
+				dataset {
+					10 = random
+					10 {
+						count = 10
+						minimum = 20
+						maximum = 100
+						includeZero = true
+					}
+				}
+				marker = circle
+				marker {
+					fillColor = white@0.4
+				}
+			}
+			# LINE end
+			40 = BAR
+			40 {
+				fillColor = green@0.2
+				dataset {
+					10 = random
+					10 {
+						count = 10
+						minimum = 2
+						maximum = 40
+						includeZero = true
+					}
+				}
+				marker = value
+				marker {
+					useValue = value_y
+					fillColor = white
+					borderColor = black
+				}
+			}
+			# BAR end
+		}
+		# PLOTAREA end
+	}
+	# VERTICAL end
+}

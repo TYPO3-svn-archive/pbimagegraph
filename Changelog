@@ -1,0 +1,16 @@
+2006-08-28  - Patrick Broens <patrick@patrickbroens.nl>
+ + class.tx_pbimagegraph_ts.php: Added a check if function 'imageantialias' exists in PHP because it was not available in PHP<4.3.2
+
+2006-08-26  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Lot of bugfixes. Should now be working on every OS.
+
+2006-08-23  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Bugfixes. Seemed I had written non compatible PHP5. (Thanks to my upcoming new collegue Michiel Roos)
+ + Added Image/class.tx_pbimagegraph_color.php because I don't want people to download and install any extra PEAR package
+
+2006-08-20  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Initial release on the TER
+
+2006-07-19 - Patrick Broens <patrick@patrickbroens.nl>
+ + Added this changelog
+ + class.tx_pbimagegraph_ts.php: Added the Javadoc 

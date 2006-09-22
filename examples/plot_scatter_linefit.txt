@@ -1,0 +1,157 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Dot Chart Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				10 = DOT
+				10 {
+					title = Introvert
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = 1
+								y = 24
+							}
+							20 = point
+							20 {
+								x = 2
+								y = 12
+							}
+							30 = point
+							30 {
+								x = 3
+								y = 46
+							}
+							40 = point
+							40 {
+								x = 4
+								y = 35
+							}
+							50 = point
+							50 {
+								x = 5
+								y = 13
+							}
+							60 = point
+							60 {
+								x = 6
+								y = 32
+							}
+							70 = point
+							70 {
+								x = 7
+								y = 1
+							}
+							80 = point
+							80 {
+								x = 8
+								y = 18
+							}
+							90 = point
+							90 {
+								x = 9
+								y = 42
+							}
+							100 = point
+							100 {
+								x = 10
+								y = 10
+							}
+						}
+					}
+					marker = cross
+					marker {
+						fillColor = blue
+						lineColor = black
+					}
+				}
+				20 = FIT_LINE
+				20 {
+					title = Extrovert
+					lineColor = blue
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = 1
+								y = 24
+							}
+							20 = point
+							20 {
+								x = 2
+								y = 12
+							}
+							30 = point
+							30 {
+								x = 3
+								y = 46
+							}
+							40 = point
+							40 {
+								x = 4
+								y = 35
+							}
+							50 = point
+							50 {
+								x = 5
+								y = 13
+							}
+							60 = point
+							60 {
+								x = 6
+								y = 32
+							}
+							70 = point
+							70 {
+								x = 7
+								y = 1
+							}
+							80 = point
+							80 {
+								x = 8
+								y = 18
+							}
+							90 = point
+							90 {
+								x = 9
+								y = 42
+							}
+							100 = point
+							100 {
+								x = 10
+								y = 10
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

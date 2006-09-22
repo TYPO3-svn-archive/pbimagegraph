@@ -1,0 +1,368 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 400
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 7
+		10 = TITLE
+		10 {
+			text = Weather Conditions
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 85
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				axis {
+					y {
+						label = zero
+						dataPreProcessor = formatted
+						dataPreProcessor {
+							format = %d C
+						}
+						title = Temperature
+						title {
+							angle = 90
+							size = 10
+						}
+						forceMinimum = -4					
+					}
+					y_secondary {
+						dataPreProcessor = formatted
+						dataPreProcessor {
+							format = %d mm
+						}
+						title = Rainfall
+						title {
+							angle = 270
+							size = 10
+						}
+					}
+					x {
+						axisIntersection = min
+					}
+				}
+				10 = BAR
+				10 {
+					plottype = normal
+					lineColor = gray
+					title = Average rainfall
+					fillStyle = gradient
+					fillStyle {
+						direction = vertical
+						startColor = white
+						endColor = #7AB025
+					}
+					axis = y_secondary
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Jan
+								y = 60
+							}
+							20 = point
+							20 {
+								x = Feb
+								y = 41
+							}
+							30 = point
+							30 {
+								x = Mar
+								y = 48
+							}
+							40 = point
+							40 {
+								x = Apr
+								y = 42
+							}
+							50 = point
+							50 {
+								x = May
+								y =50
+							}
+							60 = point
+							60 {
+								x = Jun
+								y = 55
+							}
+							70 = point
+							70 {
+								x = Jul
+								y = 67
+							}
+							80 = point
+							80 {
+								x = Aug
+								y = 65
+							}
+							90 = point
+							90 {
+								x = Sep
+								y = 72
+							}
+							100 = point
+							100 {
+								x = Oct
+								y = 77
+							}
+							110 = point
+							110 {
+								x = Nov
+								y = 80
+							}
+							120 = point
+							120 {
+								x = Dec
+								y = 68
+							}
+						}
+					}
+					marker = value
+					marker {
+						useValue = value_y
+						font {
+							size = 7
+						}
+						pointing = angular
+						pointing {
+							radius = 20
+						}
+						dataPreProcessor = formatted
+						dataPreProcessor {
+							format = %d mm
+						}
+					}
+				}
+				20 = SMOOTH_LINE
+				20 {
+					lineColor = #7AB025
+					title = Average temperature
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Jan
+								y = 0.2
+							}
+							20 = point
+							20 {
+								x = Feb
+								y = 0.1
+							}
+							30 = point
+							30 {
+								x = Mar
+								y = 2.3
+							}
+							40 = point
+							40 {
+								x = Apr
+								y = 5.8
+							}
+							50 = point
+							50 {
+								x = May
+								y = 10.8
+							}
+							60 = point
+							60 {
+								x = Jun
+								y = 14.1
+							}
+							70 = point
+							70 {
+								x = Jul
+								y = 16.2
+							}
+							80 = point
+							80 {
+								x = Aug
+								y = 15.9
+							}
+							90 = point
+							90 {
+								x = Sep
+								y = 12.1
+							}
+							100 = point
+							100 {
+								x = Oct
+								y = 8.7
+							}
+							110 = point
+							110 {
+								x = Nov
+								y = 4.4
+							}
+							120 = point
+							120 {
+								x = Dec
+								y = 1.8
+							}
+						}
+					}
+				}
+				30 = SMOOTH_LINE
+				30 {
+					lineColor = grey
+					title = Minimum temperature
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Jan
+								y = -2.7
+							}
+							20 = point
+							20 {
+								x = Feb
+								y = -2.8
+							}
+							30 = point
+							30 {
+								x = Mar
+								y = -0.9
+							}
+							40 = point
+							40 {
+								x = Apr
+								y = 1.2
+							}
+							50 = point
+							50 {
+								x = May
+								y = 5.5
+							}
+							60 = point
+							60 {
+								x = Jun
+								y = 9.2
+							}
+							70 = point
+							70 {
+								x = Jul
+								y = 11.3
+							}
+							80 = point
+							80 {
+								x = Aug
+								y = 11.1
+							}
+							90 = point
+							90 {
+								x = Sep
+								y = 7.8
+							}
+							100 = point
+							100 {
+								x = Oct
+								y = 5.0
+							}
+							110 = point
+							110 {
+								x = Nov
+								y = 1.5
+							}
+							120 = point
+							120 {
+								x = Dec
+								y = -0.9
+							}
+						}
+					}
+				}
+				40 = SMOOTH_LINE
+				40 {
+					lineColor = black
+					title = Maximum temperature
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Jan
+								y = 2.4
+							}
+							20 = point
+							20 {
+								x = Feb
+								y = 2.5
+							}
+							30 = point
+							30 {
+								x = Mar
+								y = 5.4
+							}
+							40 = point
+							40 {
+								x = Apr
+								y = 10.5
+							}
+							50 = point
+							50 {
+								x = May
+								y = 15.8
+							}
+							60 = point
+							60 {
+								x = Jun
+								y = 18.9
+							}
+							70 = point
+							70 {
+								x = Jul
+								y = 21.2
+							}
+							80 = point
+							80 {
+								x = Aug
+								y = 20.8
+							}
+							90 = point
+							90 {
+								x = Sep
+								y = 16.3
+							}
+							100 = point
+							100 {
+								x = Oct
+								y = 11.8
+							}
+							110 = point
+							110 {
+								x = Nov
+								y = 6.9
+							}
+							120 = point
+							120 {
+								x = Dec
+								y = 4.1
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+				font {
+					size = 7
+				}
+			}
+		}
+	}
+}

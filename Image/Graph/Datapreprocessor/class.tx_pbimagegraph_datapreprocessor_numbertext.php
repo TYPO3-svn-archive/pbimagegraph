@@ -85,7 +85,7 @@ class tx_pbimagegraph_DataPreprocessor_NumberText extends tx_pbimagegraph_DataPr
     }
 
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_numbertext.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_numbertext.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_numbertext.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_numbertext.php']);
 }
 ?>

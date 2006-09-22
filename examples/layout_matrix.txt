@@ -1,0 +1,267 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 800
+	height = 800
+	font.default = arial
+	font.default {
+		size = 6
+	}
+	10 = MATRIX
+	10 {
+		autoCreate = true
+		1 {
+			1 = PLOTAREA
+			1 {
+				1 = LINE
+				1 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+				2 = TITLE
+				2 {
+					text = Image_Graph_Plot_Line
+					font {
+						size = 7
+					}
+				}
+			}
+			2 = PLOTAREA
+			2 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+			3 = PLOTAREA
+			3 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+		}
+		2 {
+			1 = PLOTAREA
+			1 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+			2 = PLOTAREA
+			2 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+			3 = PLOTAREA
+			3 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}			
+			}
+		}
+		3 {
+			1 = PLOTAREA
+			1 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+			2 = PLOTAREA
+			2 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}
+			}
+			3 = PLOTAREA
+			3 {
+				1 = GRID
+				1 {
+					type = line
+					axis = x
+					lineColor = silver
+				}
+				2 = GRID
+				2 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				3 = LINE
+				3 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+				}			
+			}
+		}
+	}
+}

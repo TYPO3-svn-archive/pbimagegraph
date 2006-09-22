@@ -1,0 +1,66 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Pie Chart Sample
+			font {
+				size = 11
+			}
+		}
+		20 = PLOTAREA
+		20 {
+			hideAxis = 0
+			10 = PIE
+			10 {
+				explode {
+					radius = 10
+				}
+				dataset {
+					10 = random
+					10 {
+						count = 10
+						minimum = 10
+						maximum = 20
+						includeZero = true
+					}
+				}
+				# dataset end
+				fillStyle = fill_array
+				fillStyle {
+					1 = addColor
+					1 {
+						color = green@0.2
+					}
+					2 = addColor
+					2 {
+						color = blue@0.2
+					}
+					3 = addColor
+					3 {
+						color = yellow@0.2
+					}
+					4 = addColor
+					4 {
+						color = red@0.2
+					}
+					5 = addColor
+					5 {
+						color = orange@0.2
+					}
+				}
+				# fillstyle end
+			}
+			# PIE end	
+		}
+	}
+}

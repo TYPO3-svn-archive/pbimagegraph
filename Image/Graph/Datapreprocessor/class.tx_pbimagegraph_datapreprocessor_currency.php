@@ -62,7 +62,7 @@ class tx_pbimagegraph_DataPreprocessor_Currency extends tx_pbimagegraph_DataPrep
     }
 
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_currency.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_currency.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_currency.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_currency.php']);
 }
 ?>

@@ -1,0 +1,159 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Odo Chart
+			font {
+				size = 12
+			}
+		}
+		20 = HORIZONTAL
+		20 {
+			percentage = 80
+			10 = PLOTAREA
+			10 {
+				id = plotarea1	
+				hideAxis = 0			
+				20 = ODO
+				20 {
+					lineColor = gray
+					range {
+						min = 100
+						max = 300
+					}
+					angles {
+						offset = 135
+						width = 270
+					}
+					radiusWidth = 75
+					arrowMarker {
+						useValue = value_y
+						fillColor = transparent
+						borderColor = transparent
+						fontSize = 7
+						fontColor = black
+					}
+					tickLength = 14
+					axisTicks = 5
+					arrowFillStyle = fill_array
+					arrowFillStyle {
+						1 = addColor
+						1 {
+							color = blue@0.6
+							id = OK
+						}
+						2 = addColor
+						2 {
+							color = orange@0.6
+							id = Std
+						}
+						3 = addColor
+						3 {
+							color = green@0.6
+							id = Bad
+						}
+					}
+					arrowLineStyle = array
+					arrowLineStyle {
+						1 = addColor
+						1 {
+							color = blue
+							id = OK
+						}
+						2 = addColor
+						2 {
+							color = orange
+							id = Std
+						}
+						3 = addColor
+						3 {
+							color = green
+							id = Bad
+						}
+					}
+					marker = value
+					marker {
+						useValue = value_y
+						pointing = angular
+						pointing {
+							radius = 20
+						}
+						fillColor = black
+						borderColor = blue
+						font {
+							size = 7
+							color = white
+						}
+					}
+					rangeMarker {
+						1 {
+							min = 100
+							max = 140
+						}
+						2 {
+							min = 150
+							max = 260
+						}
+						3 {
+							min = 270
+							max = 290
+						}
+					}
+					rangeMarkerFillStyle = fill_array
+					rangeMarkerFillStyle {
+						1 = addColor
+						1 {
+							color = green@0.7
+						}
+						2 = addColor
+						2 {
+							color = yellow@0.7
+						}
+						3 = addColor
+						3 {
+							color = blue@0.7
+						}
+					}
+					dataset {
+						10 = trivial
+						10 {
+							1 = point
+							1 {
+								x = ok
+								y = 200
+								id = OK
+							}
+							2 = point
+							2 {
+								x = std
+								y = 120
+								id = Std
+							}
+							3 = point
+							3 {
+								x = bad
+								y = 250
+								id = Bad
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

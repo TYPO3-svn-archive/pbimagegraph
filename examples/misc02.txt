@@ -1,0 +1,217 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 7
+	}
+	background = gradient
+	background {
+		direction = vertical
+		startColor = lightsteelblue
+		endColor = papayawhip
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Annual income
+			font {
+				size = 11
+			}
+		}
+		20 = HORIZONTAL
+		20 {
+			percentage = 50
+			10 = PLOTAREA
+			10 {
+				fillColor = gray@0.2
+				axis {
+					x {
+						forceMinimum = 0
+						forceMaximum = 9
+					}
+					y {
+						showArrow = true
+						forceMaximum = 9500
+						dataPreProcessor = currency
+						dataPreProcessor {
+							format = US$
+						}
+					}
+				}
+				10 = GRID
+				10 {
+					type = bar
+					axis = y
+					fillColor = gray@0.2
+				}
+				# GRID end
+				30 = LINE
+				30 {
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = 2001
+								y = 1002.71828183
+							}
+							20 = point
+							20 {
+								x = 2002
+								y = 1007.3890561
+							}
+							30 = point
+							30 {
+								x = 2003
+								y = 1020.08553692
+							}
+							40 = point
+							40 {
+								x = 2004
+								y = 1054.59815003
+							}
+							50 = point
+							50 {
+								x = 2005
+								y = 1148.4131591
+							}
+							60 = point
+							60 {
+								x = 2006
+								y = 1403.42879349
+							}
+							70 = point
+							70 {
+								x = 2007
+								y = 2096.63315843
+							}
+							80 = point
+							80 {
+								x = 2008
+								y = 3980.95798704
+							}
+							90 = point
+							90 {
+								x = 2009
+								y = 9103.08392758
+							}
+						}
+					}
+					# dataset end
+					marker = icon
+					marker {
+						image = fileadmin/user_upload/pbimagegraph/coins.png
+					}
+					# marker end
+				}
+				# LINE end
+			}
+			# PLOTAREA end
+			20 = VERTICAL
+			20 {
+				percentage = 90
+				10 = PLOTAREA
+				10 {
+					id = plotarea2
+					hideAxis = 0
+					10 = PIE
+					10 {
+						fillStyle = fill_array
+						fillStyle {
+							1 = gradient
+							1 {
+								direction = radial
+								startColor = white
+								endColor = red
+							}
+							2 = gradient
+							2 {
+								direction = radial
+								startColor = white
+								endColor = blue
+							}
+							3 = gradient
+							3 {
+								direction = radial
+								startColor = white
+								endColor = yellow
+							}
+							4 = gradient
+							4 {
+								direction = radial
+								startColor = white
+								endColor = green
+							}
+							5 = gradient
+							5 {
+								direction = radial
+								startColor = white
+								endColor = orange
+							}
+						}
+						# fillStyle end
+						dataset {
+							10 = trivial
+							10 {
+								1 = point
+								1 {
+									x = CEO
+									y = 10
+								}
+								2 = point
+								2 {
+									x = TAP
+									y = 32
+								}
+								3 = point
+								3 {
+									x = TBF
+									y = 13
+								}
+								4 = point
+								4 {
+									x = ABC
+									y = 19
+								}
+								5 = point
+								5 {
+									x = QED
+									y = 26
+								}
+							}
+						}
+						# dataset end
+						marker = value
+						marker {
+							useValue = value_y
+							dataPreProcessor = formatted
+							dataPreProcessor {
+								format = %0.0f%%
+							}
+						}
+						# marker end
+						explode {
+							radius = 20
+							id = TBF
+						}
+					}
+					# PIE end
+				}
+				# PLOTAREA end
+				20 = LEGEND
+				20 {
+					plotarea.1 = plotarea2
+				}
+				# LEGEND end
+			}
+			# VERTICAL end
+		}
+		# HORIZONTAL end
+	}
+	# VERTICAL end
+}

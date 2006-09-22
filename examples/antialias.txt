@@ -1,0 +1,145 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Antialiased Sample Chart
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 80
+			10 = HORIZONTAL
+			10 {
+				percentage = 50
+				10 = PLOTAREA
+				10 {
+					id = plotarea1
+					fillColor = silver@0.3
+					10 = GRID
+					10 {
+						type = line
+						axis = y
+						lineColor = silver
+					}
+					20 = AREA
+					20 {
+						plottype = stacked
+						lineColor = gray
+						dataset {
+							10 = random
+							10 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = HTML
+							}
+							20 = random
+							20 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = XML
+							}
+							30 = random
+							30 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = Typoscript
+							}
+						}
+						fillStyle = fill_array
+						fillStyle {
+							1 = addColor
+							1 {
+								color = blue@0.2
+							}
+							2 = addColor
+							2 {
+								color = yellow@0.2
+							}
+							3 = addColor
+							3 {
+								color = green@0.2
+							}
+						}
+					}
+				}
+				20 = PLOTAREA
+				20 {
+					id = plotarea2
+					fillColor = silver@0.3
+					10 = GRID
+					10 {
+						type = line
+						axis = y
+						lineColor = silver
+					}
+					20 = LINE
+					20 {
+						lineColor = blue@0.2
+						dataset {
+							10 = random
+							10 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = HTML2
+							}
+						}
+					}
+					30 = LINE
+					30 {
+						lineColor = yellow@0.2
+						dataset {
+							10 = random
+							10 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = XML2
+							}
+						}
+					}
+					40 = LINE
+					40 {
+						lineColor = green@0.2
+						dataset {
+							10 = random
+							10 {
+								count = 10
+								minimum = 2
+								maximum = 15
+								includeZero = true
+								name = Typoscript2
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+				plotarea.2 = plotarea2
+			}
+		}
+	}
+}

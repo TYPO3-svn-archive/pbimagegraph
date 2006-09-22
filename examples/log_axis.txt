@@ -1,0 +1,427 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 400
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Logarithmic Axis
+			font {
+				size = 11
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 92
+			10 = HORIZONTAL
+			10 {
+				percentage = 4
+				10 = VERTICAL
+				10 {
+					percentage = 50
+					10 = TITLE
+					10 {
+						text = Normal Y-Axis
+						font {
+							size = 10
+							angle = 90
+						}
+					}
+					20 = TITLE
+					20 {
+						text = Logarithmic Y-Axis
+						font {
+							size = 10
+							angle = 90
+						}
+					}
+				}
+				20 = HORIZONTAL
+				20 {
+					percentage = 50
+					10 = VERTICAL
+					10 {
+						percentage = 7
+						10 = TITLE
+						10 {
+							text = Normal X-Axis
+							font {
+								size = 10
+							}
+						}
+						20 = VERTICAL
+						20 {
+							percentage = 50
+							10 = PLOTAREA
+							10 {
+								id = plotarea1
+								1 = GRID
+								1 {
+									type = line
+									axis = y
+									lineColor = silver
+								}
+								2 = GRID
+								2 {
+									type = line
+									axis = x
+									lineColor = silver
+								}
+								10 = LINE
+								10 {
+									title = x^2
+									lineColor = red
+									dataset {
+										10 = trivial
+										10 {
+											10 = point
+											10 {
+												x = 1
+												y = 1
+											}
+											20 = point
+											20 {
+												x = 2
+												y = 4
+											}
+											30 = point
+											30 {
+												x = 3
+												y = 9
+											}
+											40 = point
+											40 {
+												x = 4
+												y = 16
+											}
+											50 = point
+											50 {
+												x = 5
+												y = 25
+											}
+											60 = point
+											60 {
+												x = 6
+												y = 36
+											}
+											70 = point
+											70 {
+												x = 7
+												y = 49
+											}
+											80 = point
+											80 {
+												x = 8
+												y = 64
+											}
+											90 = point
+											90 {
+												x = 9
+												y = 81
+											}
+											100 = point
+											100 {
+												x = 10
+												y = 100
+											}
+										}
+									}
+								}						
+							}
+							20 = PLOTAREA
+							20 {
+								axis {
+									y {
+										type = logarithmic
+										labelInterval {
+											1.value = 1
+											2.value = 2
+											3.value = 3
+											4.value = 5
+											5.value = 10
+											6.value = 20
+											7.value = 50
+											8.value = 100
+										}
+									}
+								}
+								1 = GRID
+								1 {
+									type = line
+									axis = y
+									lineColor = silver
+								}
+								2 = GRID
+								2 {
+									type = line
+									axis = x
+									lineColor = silver
+								}
+								10 = LINE
+								10 {
+									title = x^2
+									lineColor = red
+									dataset {
+										10 = trivial
+										10 {
+											10 = point
+											10 {
+												x = 1
+												y = 1
+											}
+											20 = point
+											20 {
+												x = 2
+												y = 4
+											}
+											30 = point
+											30 {
+												x = 3
+												y = 9
+											}
+											40 = point
+											40 {
+												x = 4
+												y = 16
+											}
+											50 = point
+											50 {
+												x = 5
+												y = 25
+											}
+											60 = point
+											60 {
+												x = 6
+												y = 36
+											}
+											70 = point
+											70 {
+												x = 7
+												y = 49
+											}
+											80 = point
+											80 {
+												x = 8
+												y = 64
+											}
+											90 = point
+											90 {
+												x = 9
+												y = 81
+											}
+											100 = point
+											100 {
+												x = 10
+												y = 100
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					20 = VERTICAL
+					20 {
+						percentage = 7
+						10 = TITLE
+						10 {
+							text = Logarithmic X-Axis
+							font {
+								size = 10
+							}
+						}
+						20 = VERTICAL
+						20 {
+							percentage = 50
+							10 = PLOTAREA
+							10 {
+								axis {
+									x {
+										type = logarithmic
+									}
+								}
+								1 = GRID
+								1 {
+									type = line
+									axis = y
+									lineColor = silver
+								}
+								2 = GRID
+								2 {
+									type = line
+									axis = x
+									lineColor = silver
+								}
+								10 = LINE
+								10 {
+									title = x^2
+									lineColor = red
+									dataset {
+										10 = trivial
+										10 {
+											10 = point
+											10 {
+												x = 1
+												y = 1
+											}
+											20 = point
+											20 {
+												x = 2
+												y = 4
+											}
+											30 = point
+											30 {
+												x = 3
+												y = 9
+											}
+											40 = point
+											40 {
+												x = 4
+												y = 16
+											}
+											50 = point
+											50 {
+												x = 5
+												y = 25
+											}
+											60 = point
+											60 {
+												x = 6
+												y = 36
+											}
+											70 = point
+											70 {
+												x = 7
+												y = 49
+											}
+											80 = point
+											80 {
+												x = 8
+												y = 64
+											}
+											90 = point
+											90 {
+												x = 9
+												y = 81
+											}
+											100 = point
+											100 {
+												x = 10
+												y = 100
+											}
+										}
+									}
+								}
+							}
+							20 = PLOTAREA
+							20 {
+								axis {
+									x {
+										type = logarithmic
+									}
+									y {
+										type = logarithmic
+										labelInterval {
+											1.value = 1
+											2.value = 2
+											3.value = 3
+											4.value = 5
+											5.value = 10
+											6.value = 20
+											7.value = 50
+											8.value = 100
+										}
+									}
+								}
+								1 = GRID
+								1 {
+									type = line
+									axis = y
+									lineColor = silver
+								}
+								2 = GRID
+								2 {
+									type = line
+									axis = x
+									lineColor = silver
+								}
+								10 = LINE
+								10 {
+									title = x^2
+									lineColor = red
+									dataset {
+										10 = trivial
+										10 {
+											10 = point
+											10 {
+												x = 1
+												y = 1
+											}
+											20 = point
+											20 {
+												x = 2
+												y = 4
+											}
+											30 = point
+											30 {
+												x = 3
+												y = 9
+											}
+											40 = point
+											40 {
+												x = 4
+												y = 16
+											}
+											50 = point
+											50 {
+												x = 5
+												y = 25
+											}
+											60 = point
+											60 {
+												x = 6
+												y = 36
+											}
+											70 = point
+											70 {
+												x = 7
+												y = 49
+											}
+											80 = point
+											80 {
+												x = 8
+												y = 64
+											}
+											90 = point
+											90 {
+												x = 9
+												y = 81
+											}
+											100 = point
+											100 {
+												x = 10
+												y = 100
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {					
+				plotarea.1 = plotarea1	
+			}
+		}
+	}
+}			

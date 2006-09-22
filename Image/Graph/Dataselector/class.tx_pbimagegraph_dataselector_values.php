@@ -86,7 +86,7 @@ class tx_pbimagegraph_DataSelector_Values extends tx_pbimagegraph_DataSelector {
         return ( in_array($values['Y'], $this->_values) );
      }
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_values.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_values.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_values.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_values.php']);
 }
 ?>

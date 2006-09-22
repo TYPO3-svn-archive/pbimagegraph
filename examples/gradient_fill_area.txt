@@ -1,0 +1,91 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	background = gradient
+	background {
+		direction = vertical_mirrored
+		startColor = steelblue
+		endColor = lightcyan
+	}
+	borderColor = black
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Gradient filled smoothed area chart
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 85
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				axis {
+					y {
+						forceMinimum = 30
+					}
+				}
+				10 = SMOOTH_AREA
+				10 {
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 40
+							maximum = 100
+							includeZero = true
+							name = Inside scope
+						}
+					}
+					fillStyle = gradient
+					fillStyle {
+						direction = vertical
+						startColor = green
+						endColor = lightyellow
+					}
+					marker = value
+					marker {
+						fontSize = 20
+						useValue = pct_y_max
+						pointing = angular
+						pointing {
+							radius = 20
+						}
+						dataPreProcessor = formatted
+						dataPreProcessor {
+							format = %0.1f%%
+						}
+					}
+				}
+				20 = SMOOTH_AREA
+				20 {
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 50
+							maximum = 70
+							includeZero = true
+						}
+					}
+					fillColor = white@0.4
+					title = Outside scope
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

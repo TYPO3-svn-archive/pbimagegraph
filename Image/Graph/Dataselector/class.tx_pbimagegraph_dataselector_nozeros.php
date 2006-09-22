@@ -64,7 +64,7 @@ class tx_pbimagegraph_DataSelector_NoZeros extends tx_pbimagegraph_DataSelector
     }
 
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_nozeros.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_nozeros.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_nozeros.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_nozeros.php']);
 }
 ?>

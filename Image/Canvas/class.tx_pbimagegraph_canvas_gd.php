@@ -1230,6 +1230,7 @@ class tx_pbimagegraph_Canvas_GD extends tx_pbimagegraph_Canvas_WithMap
             
             $width = 0;
             $lines = explode("\n", $text);
+
             foreach ($lines as $line) {
                 $bounds = ImageTTFBBox(
                     $this->_font['size'],

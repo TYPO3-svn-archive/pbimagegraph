@@ -1,0 +1,37 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	10 = PLOTAREA
+	10 {
+		10 = BAR
+		10 {
+			dataset {
+				10 = trivial
+				10 {
+					10 = point
+					10 {
+						x = Denmark
+						y = 10
+					}
+					20 = point
+					20 {
+						x = Norway
+						y = 3
+					}
+					30 = point
+					30 {
+						x = Sweden
+						y = 8
+					}
+					40 = point
+					40 {
+						x = Finland
+						y = 5
+					}
+				}
+			}
+		}
+	}
+}

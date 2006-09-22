@@ -1,0 +1,92 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Primary & Secondary Axis
+			font {
+				size = 11
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				axis {
+					y {
+						title = Apples
+						title {
+							angle = 90
+						}				
+					}
+					y_secondary {
+						title = Pears
+						title {
+							angle = 270
+						}
+					}
+					x {
+						title = Oranges
+					}
+				}
+				10 = GRID
+				10 {
+					type = bar
+					axis = y_secondary
+					fillStyle = gradient
+					fillStyle {
+						direction = vertical
+						startColor = white
+						endColor = lightgrey
+					}
+				}
+				20 = LINE
+				20 {
+					title = Primary Axis
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 8
+							minimum = 10
+							maximum = 100
+							includeZero = true
+						}
+					}
+				}
+				30 = AREA
+				30 {
+					title = Secondary Axis
+					axis = y_secondary
+					lineColor = gray
+					fillColor = blue@0.2
+					dataset {
+						10 = random
+						10 {
+							count = 8
+							minimum = 1
+							maximum = 10
+							includeZero = true
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

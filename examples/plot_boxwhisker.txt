@@ -1,0 +1,129 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Box & Whisker Chart
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1	
+				10 = GRID
+				10 {
+					type = line
+					axis = y
+				}		
+				20 = BOXWHISKER
+				20 {
+					lineColor = gray
+					dataset {
+						30 = trivial
+						30 {
+							1 = point
+							1 {
+								x = Security
+								y {
+									1 = 10
+									2 = 21
+									3 = 12
+									4 = 18
+									5 = 12
+									6 = 17
+									7 = 14
+									8 = 13
+								}								
+							}
+							2 = point
+							2 {
+								x = Internal
+								y {
+									1 = 3
+									2 = 6
+									3 = 1
+									4 = 9
+									5 = 12
+									6 = 4
+									7 = 3
+									8 = 5
+									9 = 6
+								}								
+							}
+							3 = point
+							3 {
+								x = External
+								y {
+									1 = 9
+									2 = 10
+									3 = 12
+									4 = 15
+									5 = 13
+									6 = 12
+									7 = 11
+									8 = 17
+								}								
+							}
+						}
+					}
+					fillStyle = fill_array
+					fillStyle {
+						1 = addColor
+						1 {
+							color = red
+							id = min
+						}
+						2 = addColor
+						2 {
+							color = green
+							id = max
+						}
+						3 = addColor
+						3 {
+							color = orange@0.2
+							id = quartile1
+						}
+						4 = addColor
+						4 {
+							color = blue@0.2
+							id = median
+						}
+						5 = addColor
+						5 {
+							color = orange@0.2
+							id = quartile3
+						}
+						6 = addColor
+						6 {
+							color = yellow@0.1
+							id = box
+						}
+					}
+					lineStyle = solid
+					lineStyle {
+						color = black@0.6
+						thickness = 1
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

@@ -30,7 +30,7 @@
 /**
 * Color class to be extended; from package PEAR::Image_Color
 */
-require_once 'Image/Color.php';
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/class.tx_pbimagegraph_color.php');
 
 /**
 * Class for color-handling
@@ -42,7 +42,7 @@ require_once 'Image/Color.php';
 * @package  tx_pbimagegraph_Canvas
 * @access   public
 */
-class tx_pbimagegraph_Canvas_Color extends Image_Color
+class tx_pbimagegraph_Canvas_Color extends tx_pbimagegraph_Color
 {
     /**
     * Allocates a color in the given image.

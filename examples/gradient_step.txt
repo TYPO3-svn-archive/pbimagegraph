@@ -1,0 +1,101 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 200
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	backgroundColor = green@0.2
+	borderColor = black
+	padding = 10
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Gradient Filled Step Chart
+			font {
+				size = 11
+			}
+		}
+		20 = HORIZONTAL
+		20 {
+			percentage = 98
+			10 = PLOTAREA
+			10 {
+				axis {
+					y {
+						forceMaximum = 40
+						labelInterval = 10
+					}
+				}
+				fillStyle = gradient
+				fillStyle {
+					direction = vertical
+					startColor = yellow
+					endColor = darkred
+				}
+				10 = GRID
+				10 {
+					type = line
+					axis = y
+					lineColor = white@0.4
+				}
+				20 = STEP
+				20 {
+					borderColor = black
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = 1
+								y = 20
+							}
+							20 = point
+							20 {
+								x = 2
+								y = 10
+							}
+							30 = point
+							30 {
+								x = 3
+								y = 35
+							}
+							40 = point
+							40 {
+								x = 4
+								y = 5
+							}
+							50 = point
+							50 {
+								x = 5
+								y = 18
+							}
+							60 = point
+							60 {
+								x = 6
+								y = 33
+							}
+						}
+					}
+					fillStyle = gradient
+					fillStyle {
+						direction = vertical
+						startColor = darkgreen
+						endColor = white
+					}
+				}
+			}
+			20 = TITLE
+			20 {
+				text = Anybody recognize?
+				size = 7
+				color = gray@0.6
+				angle = 270
+			}
+		}
+	}
+}

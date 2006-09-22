@@ -93,7 +93,7 @@ class tx_pbimagegraph_DataSelector_EveryNthPoint extends tx_pbimagegraph_DataSel
     }
 
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_everynthpoint.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Dataselector/class.tx_pbimagegraph_dataselector_everynthpoint.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_everynthpoint.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataSelector/class.tx_pbimagegraph_dataselector_everynthpoint.php']);
 }
 ?>

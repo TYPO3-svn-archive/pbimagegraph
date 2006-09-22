@@ -1,0 +1,56 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Simple Graph Example
+		}
+		20 = PLOTAREA
+		20 {
+			10 = GRID
+			10 {
+				axis = y
+				type = line
+				lineColor = gray@0.2
+			}			
+			20 = SMOOTH_AREA
+			20 {
+				fillColor = blue@0.2
+				dataset {
+					10 = trivial
+					10 {
+						10 = point
+						10 {
+							x = Dogs
+							y = 3
+						}
+						20 = point
+						20 {
+							x = Cats
+							y = 1
+						}
+						30 = point
+						30 {
+							x = Parrots
+							y = 4
+						}
+						40 = point
+						40 {
+							x = Mice
+							y = 5
+						}
+					}
+				}
+			}
+		}
+	}
+}

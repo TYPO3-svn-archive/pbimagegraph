@@ -31,7 +31,7 @@
 /**
  * Include file Image/Graph/Plotarea/Element.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/plotarea/class.tx_pbimagegraph_plotarea_element.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Plotarea/class.tx_pbimagegraph_plotarea_element.php');
 
 /**
  * Defines an area of the graph that can be layout'ed.

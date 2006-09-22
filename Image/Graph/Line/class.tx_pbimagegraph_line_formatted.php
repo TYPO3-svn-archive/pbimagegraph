@@ -31,7 +31,7 @@
 /**
  * Include file Image/Graph/Line/Solid.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Line/class.tx_pbimagegraph_line_solid');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Line/class.tx_pbimagegraph_line_solid.php');
 
 /**
  * Formatted user defined line style.

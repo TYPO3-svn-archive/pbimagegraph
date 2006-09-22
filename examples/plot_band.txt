@@ -1,0 +1,82 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Band Chart Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1	
+				axis {
+					x {
+						labelInterval = 2
+					}
+				}			
+				10 = BAND
+				10 {
+					title = Band
+					lineColor = gray
+					fillColor = blue@0.2
+					dataset {
+						10 = trivial
+						10 {
+							1 = point
+							1 {
+								x = 0
+								y {
+									low = 6
+									high = 22
+								}
+							}
+							2 = point
+							2 {
+								x = 1
+								y {
+									low = 12
+									high = 32
+								}
+							}
+							3 = point
+							3 {
+								x = 2
+								y {
+									low = 15
+									high = 26
+								}
+							}
+							4 = point
+							4 {
+								x = 3
+								y {
+									low = 14
+									high = 28
+								}
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

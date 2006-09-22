@@ -1,0 +1,190 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+		color = white
+	}
+	background = gradient
+	background {
+		direction = vertical
+		startColor = green
+		endColor = lightblue
+	}
+	borderColor = black
+	10 = VERTICAL
+	10 {
+		percentage = 7
+		10 = TITLE
+		10 {
+			text = German Car Popularity
+			font {
+				size = 11
+			}
+		}
+		# TITLE end
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				axis {
+					y {
+						dataPreProcessor = formatted
+						dataPreProcessor {
+							format = %0.0f%%
+						}
+						title = Popularity
+						title {
+							angle = 90
+						}
+						forceMaximum = 105					
+					}
+					y_secondary {
+						title = Defects / 1000 units
+						title {
+							angle = 270
+						}
+					}
+				}
+				10 = GRID
+				10 {
+					type = line
+					axis = y
+					lineColor = white@0.8
+				}
+				20 = BAR
+				20 {
+					title = Popularity
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Audi
+								y = 100
+							}
+							20 = point
+							20 {
+								x = Mercedes
+								y = 41
+							}
+							30 = point
+							30 {
+								x = Porsche
+								y = 78
+							}
+							40 = point
+							40 {
+								x = BMW
+								y = 12
+							}
+						}
+					}
+					# dataset end
+					fillStyle = fill_array
+					fillStyle {
+						1 = gradient
+						1 {
+							direction = vertical
+							startColor = white
+							endColor = orange
+						}
+						2 = gradient
+						2 {
+							direction = vertical
+							startColor = white
+							endColor = blue
+						}
+						3 = gradient
+						3 {
+							direction = vertical
+							startColor = white
+							endColor = yellow
+						}
+						4 = gradient
+						4 {
+							direction = vertical
+							startColor = white
+							endColor = red
+						}
+					}
+					# fillStyle end
+					marker = array
+					marker {
+						1 = icon
+						1 {
+							image = fileadmin/user_upload/pbimagegraph/audi.png
+						}
+						2 = icon
+						2 {
+							image = fileadmin/user_upload/pbimagegraph/mercedes.png
+						}
+						3 = icon
+						3 {
+							image = fileadmin/user_upload/pbimagegraph/porsche.png
+						}
+						4 = icon
+						4 {
+							image = fileadmin/user_upload/pbimagegraph/bmw.png
+						}
+					}
+				}
+				# BAR end
+				30 = LINE
+				30 {
+					axis = y_secondary
+					title = Defects
+					lineColor = gray@0.8
+					marker = value
+					marker {
+						useValue = value_y
+						font {
+							size = 7
+							color = blue
+						}
+					}
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Audi
+								y = 10
+							}
+							20 = point
+							20 {
+								x = Mercedes
+								y = 17
+							}
+							30 = point
+							30 {
+								x = Porsche
+								y = 12
+							}
+							40 = point
+							40 {
+								x = BMW
+								y = 21
+							}
+						}
+					}
+					# dataset end
+				}
+				# LINE end
+			}
+			# PLOTAREA end
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+			# LEGEND end
+		}
+		# VERTICAL end				
+	}
+	# VERTICAL end
+}

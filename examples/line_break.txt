@@ -1,0 +1,182 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 10
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Data 'Break' Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 88
+			10 = VERTICAL
+			10 {
+				percentage = 50	
+				10 = PLOTAREA
+				10 {
+					id = plotarea1
+					10 = LINE
+					10 {
+						lineColor = red
+						title = Line
+						dataset {
+							10 = trivial
+							10 {
+								10 = point
+								10 {
+									x = Jan
+									y = 10
+								}
+								20 = point
+								20 {
+									x = Feb
+									y = 12
+								}
+								30 = point
+								30 {
+									x = Mar
+									y = 3
+								}
+								40 = point
+								40 {
+									x = Apr
+									y = null
+								}
+								50 = point
+								50 {
+									x = May
+									y = 4
+								}
+								60 = point
+								60 {
+									x = Jun
+									y = 10
+								}
+								70 = point
+								70 {
+									x = Jul
+									y = null
+								}
+								80 = point
+								80 {
+									x = Aug
+									y = null
+								}
+								90 = point
+								90 {
+									x = Sep
+									y = 9
+								}
+								100 = point
+								100 {
+									x = Oct
+									y = 10
+								}
+								110 = point
+								110 {
+									x = Nov
+									y = 4
+								}
+								120 = point
+								120 {
+									x = Dec
+									y = 14
+								}
+							}
+						}
+					}
+				}
+				20 = PLOTAREA
+				20 {
+					id = plotarea2
+					10 = SMOOTH_LINE
+					10 {
+						lineColor = blue
+						title = Smoothed line
+						dataset {
+							10 = trivial
+							10 {
+								10 = point
+								10 {
+									x = Jan
+									y = 10
+								}
+								20 = point
+								20 {
+									x = Feb
+									y = 12
+								}
+								30 = point
+								30 {
+									x = Mar
+									y = 3
+								}
+								40 = point
+								40 {
+									x = Apr
+									y = null
+								}
+								50 = point
+								50 {
+									x = May
+									y = 4
+								}
+								60 = point
+								60 {
+									x = Jun
+									y = 10
+								}
+								70 = point
+								70 {
+									x = Jul
+									y = null
+								}
+								80 = point
+								80 {
+									x = Aug
+									y = null
+								}
+								90 = point
+								90 {
+									x = Sep
+									y = 9
+								}
+								100 = point
+								100 {
+									x = Oct
+									y = 10
+								}
+								110 = point
+								110 {
+									x = Nov
+									y = 4
+								}
+								120 = point
+								120 {
+									x = Dec
+									y = 14
+								}
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+				plotarea.2 = plotarea2
+			}
+		}
+	}
+}

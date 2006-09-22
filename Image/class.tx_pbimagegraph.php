@@ -41,7 +41,7 @@ require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/cl
 /**
  * Include file Image/Graph/Constants.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/constants.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Constants.php');
 
 /**
  * Main class for the graph creation.
@@ -112,7 +112,7 @@ class tx_pbimagegraph extends tx_pbimagegraph_Element
      * $Graph =& tx_pbimagegraph::factory('graph', array(array('width' => 400,
      * 'height' => 300, 'canvas' => 'jpg')));
      * 
-     * NB! In thïs case remember the "double" array (see {@link tx_pbimagegraph::
+     * NB! In thï¿½s case remember the "double" array (see {@link tx_pbimagegraph::
      * factory()})
      * 
      * 2) Use the canvas specified, pass a valid tx_pbimagegraph_Canvas as

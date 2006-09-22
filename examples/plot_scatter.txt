@@ -1,0 +1,69 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Dot Chart Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				10 = DOT
+				10 {
+					title = Introvert
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 2
+							maximum = 9
+							includeZero = false
+						}
+					}
+					marker = cross
+					marker {
+						fillColor = blue
+						lineColor = black
+					}
+				}
+				20 = DOT
+				20 {
+					title = Extrovert
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 10
+							maximum = 15
+							includeZero = false
+						}
+					}
+					marker = plus
+					marker {
+						fillColor = green
+						lineColor = black
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

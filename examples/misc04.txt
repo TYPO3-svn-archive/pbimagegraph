@@ -1,0 +1,27 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 500
+	height = 300
+	10 = PLOTAREA
+	10 {
+		fillStyle = image
+		fillStyle {
+			image = fileadmin/user_upload/pbimagegraph/audi-tt-coupe.jpg
+		}
+		10 = SMOOTH_AREA
+		10 {
+			fillColor = white@0.4
+			dataset {
+				10 = random
+				10 {
+					count = 20
+					minimum = 10
+					maximum = 100
+					includeZero = true
+				}
+			}
+		}
+	}
+}
+

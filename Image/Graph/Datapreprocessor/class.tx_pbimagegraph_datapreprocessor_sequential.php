@@ -31,7 +31,7 @@
 /**
  * Include file Image/Graph/DataPreprocessor/Array.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_array.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_array.php');
 
 /**
  * Formatting values using a sequential data label array, ie. returning the
@@ -63,7 +63,7 @@ class tx_pbimagegraph_DataPreprocessor_Sequential extends tx_pbimagegraph_DataPr
     }
 
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_sequential.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/Datapreprocessor/class.tx_pbimagegraph_datapreprocessor_sequential.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_sequential.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pbimagegraph/Image/Graph/DataPreprocessor/class.tx_pbimagegraph_datapreprocessor_sequential.php']);
 }
 ?>

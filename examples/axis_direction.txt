@@ -1,0 +1,64 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 10
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Changing Axis Direction
+			font {
+				size = 12
+			}
+		}
+		20 = HORIZONTAL
+		20 {
+			percentage = 50
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				20 = LINE
+				20 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 2
+							maximum = 15
+							includeZero = true
+						}
+					}
+				}
+			}
+			20 = PLOTAREA
+			20 {
+				id = plotarea2
+				axis {
+					y {
+						inverted = true
+					}
+				}
+				20 = LINE
+				20 {
+					lineColor = red
+					dataset {
+						10 = random
+						10 {
+							count = 10
+							minimum = 2
+							maximum = 15
+							includeZero = true
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,138 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 90
+		10 = PLOTAREA
+		10 {
+			id = plotarea1
+			10 = AREA
+			10 {
+				title = Area
+				fillColor = red@0.2
+				dataset {
+					10 = trivial
+					10 {
+						10 = point
+						10 {
+							x = Jan
+							y = 1
+						}
+						20 = point
+						20 {
+							x = Feb
+							y = 2
+						}
+						30 = point
+						30 {
+							x = Mar
+							y = -2
+						}
+						40 = point
+						40 {
+							x = Apr
+							y = 4
+						}
+						50 = point
+						50 {
+							x = May
+							y = 3
+						}
+						60 = point
+						60 {
+							x = Jun
+							y = 6
+						}
+						70 = point
+						70 {
+							x = Jul
+							y = -1
+						}
+						80 = point
+						80 {
+							x = Aug
+							y = -3
+						}
+						90 = point
+						90 {
+							x = Sep
+							y = 2
+						}
+						100 = point
+						100 {
+							x = Oct
+							y = 3
+						}
+						110 = point
+						110 {
+							x = Nov
+							y = 1
+						}
+						120 = point
+						120 {
+							x = Dec
+							y = 4
+						}
+					}
+				}
+				# dataset end
+			}
+			# LINE end
+			40 = BAR
+			40 {
+				title = Bar
+				fillColor = blue@0.2
+				dataset {
+					10 = trivial
+					10 {
+						10 = point
+						10 {
+							x = Jan
+							y = 3
+						}
+						20 = point
+						20 {
+							x = Feb
+							y = 4
+						}
+						30 = point
+						30 {
+							x = Mar
+							y = 1
+						}
+						40 = point
+						40 {
+							x = Apr
+							y = -2
+						}
+						50 = point
+						50 {
+							x = May
+							y = 3
+						}
+						60 = point
+						60 {
+							x = Jul
+							y = 1
+						}
+					}
+				}
+				# dataset end
+			}
+			# BAR end
+		}
+		# PLOTAREA end
+		20 = LEGEND
+		20 {
+			plotarea.1 = plotarea1
+		}
+	}
+	# VERTICAL end
+}

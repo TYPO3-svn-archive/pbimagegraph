@@ -1,0 +1,301 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 400
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 9
+		10 = TITLE
+		10 {
+			text = A Sample Demonstrating Many-a-thing
+			font {
+				size = 15
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = HORIZONTAL
+			10 {
+				percentage = 65
+				10 = PLOTAREA
+				10 {
+					id = plotarea1
+					axisPadding {
+						left = 20
+						right = 20
+					}
+					axis {
+						x {
+							dataPreProcessor = array
+							dataPreProcessor {
+								0 = A Point
+								1 = Another 
+            					5 = Yet another
+							}
+							font {
+								angle = 90
+							}
+							title = Very obvious
+							title {
+								angle = 0
+								size = 10
+							}
+						}
+						y {
+							level {
+								2 {
+									labelInterval = 5
+									tickOptions {
+										start = -1
+										end = 1
+									}
+								}
+							}
+						}
+					}
+					10 = GRID
+					10 {
+						type = bar
+						axis = y
+						fillColor = blue@0.3
+					}
+					20 = BAR
+					20 {
+						title = Buy or Sell
+						plottype = normal
+						dataset {
+							10 = random
+							10 {
+								count = 7
+								minimum = 10
+								maximum = 120
+								includeZero = false
+							}
+						}
+						fillStyle = fill_array
+						fillStyle {
+							1 = gradient
+							1 {
+								direction = vertical
+								startColor = white
+								endColor = red
+							}
+							2= gradient
+							2 {
+								direction = horizontal
+								startColor = white
+								endColor = blue
+							}
+							3 = gradient
+							3 {
+								direction = horizontal_mirrored
+								startColor = orange
+								endColor = white
+							}
+							4 = gradient
+							4 {
+								direction = vertical_mirrored
+								startColor = green
+								endColor = white
+							}
+							5 = gradient
+							5 {
+								direction = radial
+								startColor = white
+								endColor = purple
+							}
+							6 = gradient
+							6 {
+								direction = diagonally_tl_br
+								startColor = white
+								endColor = brown
+							}
+							7 = gradient
+							7 {
+								direction = diagonally_bl_tr
+								startColor = white
+								endColor = black
+							}
+						}
+					}
+					# BAR end
+					30 = LINE
+					30 {
+						title = Clearly not a good day
+						lineStyle = dotted
+						lineStyle {
+							color1 = black
+							color2 = transparent
+						}
+						dataset {
+							10 = random
+							10 {
+								count = 7
+								minimum = 20
+								maximum = 100
+								includeZero = false
+							}
+						}
+						marker = array
+						marker {
+							1 = cross
+							1 {
+								lineColor = black
+								fillColor = green
+							}
+							2 = plus
+							2 {
+								lineColor = black
+								fillColor = red
+							}
+							3 = star
+							3 {
+								lineColor = black@0.4
+								fillColor = yellow
+							}
+						}
+					}
+					# LINE end
+				}
+				# PLOTAREA end
+				20 = VERTICAL
+				20 {
+					percentage = 50
+					10 = PLOTAREA
+					10 {
+						id = plotarea2
+						borderColor = black
+						shadow = true
+						padding = 15
+						background = gradient
+						background {
+							direction = vertical
+							startColor = white
+							endColor = brown
+						}
+						10 = GRID
+						10 {
+							type = line
+							axis = y
+							lineColor = gray
+						}
+						20 = GRID
+						20 {
+							type = line
+							axis = x
+							lineColor = gray
+						}
+						30 = SMOOTH_LINE
+						30 {
+							title = Oil
+							marker = average
+							marker {
+								lineColor = purple
+							}
+							lineColor = orange
+							dataset {
+								10 = trivial
+								10 {
+									10 = point
+									10 {
+										x = DK
+										y = 6
+									}
+									20 = point
+									20 {
+										x = UK
+										y = 8
+									}
+									30 = point
+									30 {
+										x = PO
+										y = 2
+									}
+									40 = point
+									40 {
+										x = NL
+										y = 4
+									}
+								}
+							}
+						}   					
+						# SMOOTH_LINE end
+					}
+					# PLOTAREA end
+					20 = PLOTAREA
+					20 {
+						id = plotarea3
+						type = radar
+						axis {
+							x {
+								dataPreProcessor = array
+								dataPreProcessor {
+									1 = Irrelevance
+						            2 = Regular
+						            3 = Partly
+						            4 = Relevance 
+						            5 = Something 
+						            6 = Everything 
+						            7 = Nothing
+						            8 = Irregular
+								}
+							}
+						}
+						10 = GRID
+						10 {
+							type = line
+							axis = y
+							lineColor = lightgrey
+						}
+						20 = RADAR
+						20 {
+							title = Obscurity
+							fillColor = yellow@0.2
+							dataset {
+								10 = random
+								10 {
+									count = 8
+									minimum = 1
+									maximum = 5
+								}
+							}
+						}
+						# RADAR end
+						30 = RADAR
+						30 {
+							title = Clarity
+							fillColor = green@0.2
+							dataset {
+								10 = random
+								10 {
+									count = 8
+									minimum = 1
+									maximum = 5
+								}
+							}
+						}
+						# RADAR end
+					}
+					# PLOTAREA end
+				}
+				# VERTICAL end
+			}
+			# HORIZONTAL end
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+				plotarea.2 = plotarea2
+				plotarea.3 = plotarea3
+			}
+			# LEGEND end
+		}
+		# VERTICAL end
+	}
+	# VERTICAL end
+}

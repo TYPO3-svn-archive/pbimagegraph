@@ -1,0 +1,126 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Spider/Radar Chart Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				type = radar
+				10 = GRID
+				10 {
+					type = polar
+					axis = y
+				}
+				20 = RADAR
+				20 {
+					lineColor = blue@0.4
+					fillColor = blue@0.2
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Life
+								y = 4
+							}
+							20 = point
+							20 {
+								x = Universe
+								y = 1
+							}
+							30 = point
+							30 {
+								x = Everything
+								y = 6
+							}
+							40 = point
+							40 {
+								x = Something
+								y = 5
+							}
+							50 = point
+							50 {
+								x = Nothing
+								y = 3
+							}
+							60 = point
+							60 {
+								x = Irrelevant
+								y = 2
+							}
+						}
+					}
+				}
+				# RADAR end
+				30 = RADAR
+				30 {
+					lineColor = red@0.4
+					fillColor = red@0.2
+					dataset {
+						10 = trivial
+						10 {
+							10 = point
+							10 {
+								x = Life
+								y = 5
+							}
+							20 = point
+							20 {
+								x = Universe
+								y = 2
+							}
+							30 = point
+							30 {
+								x = Everything
+								y = 1
+							}
+							40 = point
+							40 {
+								x = Something
+								y = 6
+							}
+							50 = point
+							50 {
+								x = Nothing
+								y = 4
+							}
+							60 = point
+							60 {
+								x = Irrelevant
+								y = 3
+							}
+						}
+					}
+				}
+				# RADAR end
+			}
+			# PLOTAREA end
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+			# LEGEND end
+		}
+		# VERTICAL end
+	}
+	# VERTICAL end
+}

@@ -1,0 +1,39 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 500
+	height = 200
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = PLOTAREA
+	10 {
+		axis {
+			y {
+				labelInterval {
+					1.value = 2
+					2.value = 4
+					3.value = 9
+				}
+			}
+		}
+		20 = LINE
+		20 {
+			lineStyle = dashed
+			lineStyle {
+				color1 = red
+				color2 = transparent
+			}
+			dataset {
+				10 = random
+				10 {
+					count = 8
+					minimum = 1
+					maximum = 10
+					includeZero = true
+				}
+			}
+		}
+	}
+}

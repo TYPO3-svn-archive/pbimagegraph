@@ -30,7 +30,7 @@
 /**
  * Include file Image/Graph/Font.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'image/graph/class.tx_pbimagegraph_font.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/class.tx_pbimagegraph_font.php');
 
 // Constant declarations
 

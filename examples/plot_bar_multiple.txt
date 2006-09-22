@@ -1,0 +1,84 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 400
+	height = 300
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Multiple Bar Chart Sample
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1			
+				20 = BAR
+				20 {
+					lineColor = gray
+					dataset {
+						10 = random
+						10 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+						20 = random
+						20 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+						30 = random
+						30 {
+							count = 5
+							minimum = 2
+							maximum = 15
+							includeZero = false
+						}
+					}
+					marker = value
+					marker {
+						useValue = value_y
+						pointing = angular
+						pointing {
+							radius = 20
+						}
+					}
+					fillStyle = fill_array
+					fillStyle {
+						1 = addColor
+						1 {
+							color = blue@0.2
+						}
+						2 = addColor
+						2 {
+							color = yellow@0.2
+						}
+						3 = addColor
+						3 {
+							color = green@0.2
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+			}
+		}
+	}
+}

@@ -31,7 +31,7 @@
 /**
  * Include file Image/Graph/Plot/Bar.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/class.tx_pbimagegraph_plot_bar.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Graph/Plot/class.tx_pbimagegraph_plot_bar.php');
 
 /**
  * Step chart.

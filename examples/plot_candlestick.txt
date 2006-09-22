@@ -1,0 +1,135 @@
+lib.pbimagegraph < plugin.tx_pbimagegraph_pi1
+lib.pbimagegraph {
+	factory = png
+	width = 600
+	height = 400
+	antialias = native
+	font.default = verdana
+	font.default {
+		size = 8
+	}
+	10 = VERTICAL
+	10 {
+		percentage = 5
+		10 = TITLE
+		10 {
+			text = Candlestick Diagram
+			font {
+				size = 12
+			}
+		}
+		20 = VERTICAL
+		20 {
+			percentage = 90
+			10 = PLOTAREA
+			10 {
+				id = plotarea1
+				axis {
+					x {
+						font {
+							angle = 90
+						}
+						labelInterval = 2
+					}
+					y {
+						labelInterval = 20
+						title = Stock Price
+						title {
+							size = 10
+							angle = 90
+						}					
+					}
+				}
+				10 = GRID
+				10 {
+					type = line
+					axis = y
+					lineColor = silver
+				}
+				20 = GRID
+				20 {
+					type = line
+					axis = x
+					lineColor = silver
+				}			
+				30 = CANDLESTICK
+				30 {
+					title = Image_Graph Daily
+					fillStyle = fill_array
+					fillStyle {
+						1 = addColor
+						1 {
+							color = red@0.4
+							id = red
+						}
+						2 = addColor
+						2 {
+							color = green@0.4
+							id = green
+						}
+					}
+					dataset {
+						30 = trivial
+						30 {
+							1 = point
+							1 {
+								x = 01-Nov-04
+								y {
+									min = 10
+									open = 21
+									close = 25
+									max = 40
+								}								
+							}
+							2 = point
+							2 {
+								x = 02-Nov-04
+								y {
+									min = 12
+									open = 30
+									close = 60
+									max = 65
+								}								
+							}
+							3 = point
+							3 {
+								x = 03-Nov-04
+								y {
+									min = 14
+									open = 20
+									close = 30
+									max = 45
+								}								
+							}
+							4 = point
+							4 {
+								x = 04-Nov-04
+								y {
+									min = 8
+									open = 12
+									close = 14
+									max = 16
+								}								
+							}
+							5 = point
+							5 {
+								x = 05-Nov-04
+								y {
+									min = 18
+									open = 50
+									close = 100
+									max = 120
+								}								
+							}
+						}
+					}
+				}
+			}
+			20 = LEGEND
+			20 {
+				plotarea.1 = plotarea1
+				fontSize = 10
+			}
+		}
+	}
+}
