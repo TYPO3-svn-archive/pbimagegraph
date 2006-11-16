@@ -44,12 +44,12 @@ class tx_pbimagegraph_ts {
 		define('IMAGE_CANVAS_SYSTEM_FONT_PATH', PATH_site);
 		if ($arrConf) {
 			$strFileName = tx_pbimagegraph_ts::fileName('ImageGraph/',$arrConf,$arrConf['factory']);
-			if (!@file_exists($strFileName)) {
+			if (!@file_exists(PATH_site . $strFileName)) {
 				tx_pbimagegraph_ts::canvas($arrConf);
-				$this->objGraph->done(array('filename' => $strFileName));
+				$this->objGraph->done(array('filename' => PATH_site . $strFileName));
 			}
 			$strAltParam = tx_pbimagegraph_ts::getAltParam($arrConf);
-			$strOutput = '<img src="'.$strFileName.'" '.$strAltParam.' />';
+			$strOutput = '<img src="/'.$strFileName.'" '.$strAltParam.' />';
 		}
 		return $strOutput;
 	}
@@ -163,96 +163,91 @@ class tx_pbimagegraph_ts {
 	 */
 	function cObjGetSingle($strCobjName,$arrConf,&$objRef)	{
 		$objEmpty = null;
-		$GLOBALS['TSFE']->cObjectDepthCounter--;
-		if ($GLOBALS['TSFE']->cObjectDepthCounter>0)	{
-			$strCobjName = trim($strCobjName);
-			if (substr($strCobjName,0,1)=='<')	{
-				$strKey = trim(substr($strCobjName,1));
-				$objTSparser = t3lib_div::makeInstance('t3lib_TSparser');
-				$arrOldConf=$arrConf;
-				list($strCobjName, $arrConf) = $objTSparser->getVal($strKey,$GLOBALS['TSFE']->tmpl->setup);
-				if (is_array($arrOldConf) && count($arrOldConf))	{
-					$conf = $this->joinTSarrays($arrConf,$arrOldConf);
-				}
-				$GLOBALS['TT']->incStackPointer();
-				$objOutput =& tx_pbimagegraph_ts::cObjGetSingle($strCobjName,$arrConf,$objEmpty);
-				$GLOBALS['TT']->decStackPointer();
-			} else {	
-				switch($strCobjName) {
-					case 'PLOTAREA':
-						$objOutput =& tx_pbimagegraph_ts::PLOTAREA($arrConf);
-						break;
-					case 'AXIS_MARKER':
-						tx_pbimagegraph_ts::AXIS_MARKER($objRef,$arrConf);
-						break;
-					// Types of charts
-					case 'LINE':
-					case 'AREA':
-					case 'BAR':
-					case 'BOXWHISKER':
-					case 'CANDLESTICK':
-					case 'SMOOTH_LINE':
-					case 'SMOOTH_AREA':
-					case 'ODO':
-					case 'PIE':
-					case 'RADAR':
-					case 'STEP':
-					case 'IMPULSE':
-					case 'DOT':
-					case 'SCATTER':
-					case 'BAND':
-					case 'SMOOTH_RADAR':
-					case 'FIT_LINE':
-						tx_pbimagegraph_ts::PLOT($strCobjName,$objRef,$arrConf);
-						break;
-					// Data
-					case 'DATASET':
-						$objOutput = tx_pbimagegraph_ts::DATASET($arrConf);
-						break;
-					case 'RANDOM':
-						$objOutput = tx_pbimagegraph_ts::RANDOM($arrConf);
-						break;
-					case 'FUNCTION':
-						$objOutput = tx_pbimagegraph_ts::FUNCTIO($arrConf);
-						break;
-					case 'VECTOR':
-						$objOutput = tx_pbimagegraph_ts::VECTOR($arrConf);
-						break;
-					// Axis
-					case 'CATEGORY':
-						$objOutput = tx_pbimagegraph_ts::CATEGORY($arrConf);
-						break;
-					case 'AXIS':
-						$objOutput = tx_pbimagegraph_ts::AXIS($arrConf);
-						break;
-					case 'AXIS_LOG':
-						$objOutput = tx_pbimagegraph_ts::AXIS_LOG($arrConf);
-						break;
-					// Title
-					case 'TITLE':
-						$objOutput = tx_pbimagegraph_ts::TITLE($arrConf);
-						break;
-					// Grids
-					case 'GRID':
-						tx_pbimagegraph_ts::GRID($objRef,$arrConf);
-						break;
-					// Various
-					case 'LEGEND':
-						$objOutput = tx_pbimagegraph_ts::LEGEND($objRef,$arrConf);
-						break;
-					// Layout
-					case 'VERTICAL':
-					case 'HORIZONTAL':
-						$objOutput = tx_pbimagegraph_ts::VERT_HOR($arrConf,$strCobjName);
-						break;
-					case 'MATRIX':
-						$objOutput = tx_pbimagegraph_ts::MATRIX($arrConf);
-						break;
-				}
+		$strCobjName = trim($strCobjName);
+		if (substr($strCobjName,0,1)=='<')	{
+			$strKey = trim(substr($strCobjName,1));
+			$objTSparser = t3lib_div::makeInstance('t3lib_TSparser');
+			$arrOldConf=$arrConf;
+			list($strCobjName, $arrConf) = $objTSparser->getVal($strKey,$GLOBALS['TSFE']->tmpl->setup);
+			if (is_array($arrOldConf) && count($arrOldConf))	{
+				$conf = $this->joinTSarrays($arrConf,$arrOldConf);
+			}
+			$GLOBALS['TT']->incStackPointer();
+			$objOutput =& tx_pbimagegraph_ts::cObjGetSingle($strCobjName,$arrConf,$objEmpty);
+			$GLOBALS['TT']->decStackPointer();
+		} else {	
+			switch($strCobjName) {
+				case 'PLOTAREA':
+					$objOutput =& tx_pbimagegraph_ts::PLOTAREA($arrConf);
+					break;
+				case 'AXIS_MARKER':
+					tx_pbimagegraph_ts::AXIS_MARKER($objRef,$arrConf);
+					break;
+				// Types of charts
+				case 'LINE':
+				case 'AREA':
+				case 'BAR':
+				case 'BOXWHISKER':
+				case 'CANDLESTICK':
+				case 'SMOOTH_LINE':
+				case 'SMOOTH_AREA':
+				case 'ODO':
+				case 'PIE':
+				case 'RADAR':
+				case 'STEP':
+				case 'IMPULSE':
+				case 'DOT':
+				case 'SCATTER':
+				case 'BAND':
+				case 'SMOOTH_RADAR':
+				case 'FIT_LINE':
+					tx_pbimagegraph_ts::PLOT($strCobjName,$objRef,$arrConf);
+					break;
+				// Data
+				case 'DATASET':
+					$objOutput = tx_pbimagegraph_ts::DATASET($arrConf);
+					break;
+				case 'RANDOM':
+					$objOutput = tx_pbimagegraph_ts::RANDOM($arrConf);
+					break;
+				case 'FUNCTION':
+					$objOutput = tx_pbimagegraph_ts::FUNCTIO($arrConf);
+					break;
+				case 'VECTOR':
+					$objOutput = tx_pbimagegraph_ts::VECTOR($arrConf);
+					break;
+				// Axis
+				case 'CATEGORY':
+					$objOutput = tx_pbimagegraph_ts::CATEGORY($arrConf);
+					break;
+				case 'AXIS':
+					$objOutput = tx_pbimagegraph_ts::AXIS($arrConf);
+					break;
+				case 'AXIS_LOG':
+					$objOutput = tx_pbimagegraph_ts::AXIS_LOG($arrConf);
+					break;
+				// Title
+				case 'TITLE':
+					$objOutput = tx_pbimagegraph_ts::TITLE($arrConf);
+					break;
+				// Grids
+				case 'GRID':
+					tx_pbimagegraph_ts::GRID($objRef,$arrConf);
+					break;
+				// Various
+				case 'LEGEND':
+					$objOutput = tx_pbimagegraph_ts::LEGEND($objRef,$arrConf);
+					break;
+				// Layout
+				case 'VERTICAL':
+				case 'HORIZONTAL':
+					$objOutput = tx_pbimagegraph_ts::VERT_HOR($arrConf,$strCobjName);
+					break;
+				case 'MATRIX':
+					$objOutput = tx_pbimagegraph_ts::MATRIX($arrConf);
+					break;
 			}
 		}
-			// Increasing on exit...
-		$GLOBALS['TSFE']->cObjectDepthCounter++;
 		return $objOutput;
 	}
 
