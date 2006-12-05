@@ -1,3 +1,6 @@
+2006-12-05  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Bugfix in naming error directory
+
 2006-08-28  - Patrick Broens <patrick@patrickbroens.nl>
  + class.tx_pbimagegraph_ts.php: Added a check if function 'imageantialias' exists in PHP because it was not available in PHP<4.3.2
 
