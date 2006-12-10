@@ -141,6 +141,10 @@ class tx_pbimagegraph_ts {
 
 	function cObjGet($arrSetup,&$objRef) {
 		if (is_array($arrSetup)) {
+			$currVersionStr = $TYPO3_CONF_VARS['SYS']['compat_version']?$TYPO3_CONF_VARS['SYS']['compat_version']:TYPO3_version;
+			if (t3lib_div::int_from_ver($currVersionStr) < t3lib_div::int_from_ver('4.0.0')) {
+				require_once(PATH_site.'t3lib/class.t3lib_tstemplate.php');
+			}
 			$arrSortedKeys=t3lib_TStemplate::sortedKeyList($arrSetup);
 			foreach($arrSortedKeys as $strKey) {
 				$strCobjName=$arrSetup[$strKey];
