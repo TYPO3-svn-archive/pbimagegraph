@@ -20,7 +20,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
+define('IMAGE_CANVAS_SYSTEM_FONT_PATH', PATH_site);
 require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/class.tx_pbimagegraph.php');
 require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/class.tx_pbimagegraph_canvas.php');
 
@@ -41,18 +41,30 @@ class tx_pbimagegraph_ts {
 	 * @return	string		The img tag
 	 */
 	function make($arrConf)	{
-		define('IMAGE_CANVAS_SYSTEM_FONT_PATH', PATH_site);
+		
 		if ($arrConf) {
 			$strFileName = tx_pbimagegraph_ts::fileName('ImageGraph/',$arrConf,$arrConf['factory']);
+			$arrConf['factory'] = $arrConf['factory']?$arrConf['factory']:'png';
+    		$arrConf['width'] = $arrConf['width']?$arrConf['width']:'400';
+    		$arrConf['height'] = $arrConf['height']?$arrConf['height']:'300';
 			if (!@file_exists(PATH_site . $strFileName)) {
 				tx_pbimagegraph_ts::canvas($arrConf);
 				$this->objGraph->done(array('filename' => PATH_site . $strFileName));
 			}
 			$strAltParam = tx_pbimagegraph_ts::getAltParam($arrConf);
-			$strOutput = '<img src="/'.$strFileName.'" '.$strAltParam.' />';
+			switch(strtolower($arrConf['factory'])) {
+				case 'svg':
+					$strOutput = '<object width="' . $arrConf['width'] . '" height="' . $arrConf['height'] . '" type="image/svg+xml" data="' . $strFileName . '">Browser does not support SVG files!</object>';
+					break;
+				case 'pdf':
+					header('Location: '.t3lib_div::locationHeaderUrl($strFileName));
+        			exit;
+				default:
+					$strOutput = '<img width="' . $arrConf['width'] . '" height="' . $arrConf['height'] . '" src="/'.$strFileName.'" '.$strAltParam.' />';
+			}		
 		}
 		return $strOutput;
-	}
+	}	
 	
 	/**
 	 * Initialisation of the ImageGraph canvas, according to the TS configuration.
@@ -62,9 +74,8 @@ class tx_pbimagegraph_ts {
 	 */
 	function canvas($arrConf) {
 		$objEmpty = null;
-		$strFactory = $arrConf['factory']?$arrConf['factory']:'png';
-    	$arrParams['width'] = $arrConf['width']?$arrConf['width']:'400';
-    	$arrParams['height'] = $arrConf['height']?$arrConf['height']:'300';
+    	$arrParams['width'] = $arrConf['width'];
+    	$arrParams['height'] = $arrConf['height'];
     	$arrParams['left'] = $arrConf['left'];
     	$arrParams['top'] = $arrConf['top'];
     	$arrParams['top'] = $arrConf['top'];
@@ -81,7 +92,7 @@ class tx_pbimagegraph_ts {
  			$arrConf['antialias'] = 'off';
 		}
     	$arrParams['antialias'] = $arrConf['antialias']?$arrConf['antialias']:'off';
-		$Canvas =& tx_pbimagegraph_Canvas::factory($strFactory, $arrParams);    
+		$Canvas =& tx_pbimagegraph_Canvas::factory($arrConf['factory'], $arrParams);    
 		$this->objGraph =& tx_pbimagegraph::factory('graph', $Canvas);
 		tx_pbimagegraph_ts::setElementProperties($this->objGraph,$arrConf);
 		$objLayout = tx_pbimagegraph_ts::cObjGet($arrConf,$objEmpty);
@@ -528,6 +539,8 @@ class tx_pbimagegraph_ts {
 	 */
 	function datasetTrivial(&$objRef,$arrConf) {
 		if (is_array($arrConf)) {
+			$strName = $arrConf['name'];
+			$objRef->setName($strName);
 			$arrKeys=t3lib_TStemplate::sortedKeyList($arrConf);
 			foreach($arrKeys as $strKey) {		
 				$strValue=$arrConf[$strKey];

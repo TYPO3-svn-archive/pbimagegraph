@@ -445,10 +445,10 @@ class tx_pbimagegraph_Canvas_PDF extends tx_pbimagegraph_Canvas
      */
     function _setFont()
     {
-        $this->_pdfFont = false;
+        $this->_pdfFont = false;debug($this->_font);
         if (isset($this->_font['name'])) {
-            pdf_set_parameter($this->_pdf, 'FontOutline', $this->_font['name'] . '=' . $this->_font['file']);
-            $this->_pdfFont = pdf_findfont($this->_pdf, $this->_font['name'], $this->_font['encoding'], 1);
+            pdf_set_parameter($this->_pdf, 'FontOutline', IMAGE_CANVAS_SYSTEM_FONT_PATH . $this->_font['name'] . '=' . IMAGE_CANVAS_SYSTEM_FONT_PATH . $this->_font['file']);
+            $this->_pdfFont = pdf_findfont($this->_pdf, IMAGE_CANVAS_SYSTEM_FONT_PATH . $this->_font['name'], $this->_font['encoding'], 1);
 
             if ($this->_pdfFont) {
                 pdf_setfont($this->_pdf, $this->_pdfFont, $this->_font['size']);

@@ -1,3 +1,10 @@
+2007-01-09  - Patrick Broens <patrick@patrickbroens.nl>
+ + Added svg support
+ + Added pdf support (in very early alpha stage) 
+
+2006-12-16  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Bugfix setName in datasetTrivial
+
 2006-12-06  - Patrick Broens <patrick@patrickbroens.nl>
  ~ Changes to make it work in version 3.8.1
 

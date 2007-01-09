@@ -33,7 +33,7 @@ require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'image/class.tx
 /**
  * Include file Image/Canvas/Color.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Canvas/class.tx_pbimagegraph_canvascolor.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/Canvas/class.tx_pbimagegraph_canvas_color.php');
 
 /**
  * SVG Canvas class.
