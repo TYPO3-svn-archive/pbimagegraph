@@ -1,3 +1,6 @@
+2007-01-30  - Patrick Broens <patrick@patrickbroens.nl>
+ ~ Bugfix in ext_localconf.php
+
 2007-01-09  - Patrick Broens <patrick@patrickbroens.nl>
  + Added svg support
  + Added pdf support (in very early alpha stage) 
