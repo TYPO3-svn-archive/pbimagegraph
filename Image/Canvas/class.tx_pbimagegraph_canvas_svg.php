@@ -28,7 +28,7 @@
 /**
  * Include file Image/Canvas.php
  */
-require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'image/class.tx_pbimagegraph_canvas.php');
+require_once(PATH_site.t3lib_extMgm::siteRelPath("pbimagegraph").'Image/class.tx_pbimagegraph_canvas.php');
 
 /**
  * Include file Image/Canvas/Color.php
