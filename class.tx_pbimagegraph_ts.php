@@ -606,12 +606,23 @@ class tx_pbimagegraph_ts {
 									//$Marker->addNew('icon_marker', './images/audi.png');
 										$objArrayMarker[$strKey] =& tx_pbimagegraph::factory('tx_pbimagegraph_Marker_Icon',PATH_site.$arrConf['marker.'][$strKey.'.']['image']);
 										break;
+									case 'value':
+										$intAxis = 0;
+										eval("\$intAxis = IMAGE_GRAPH_".strtoupper($arrConf['marker.'][$strKey.'.']['useValue']).";");
+										$objArrayMarker[$strKey] =& tx_pbimagegraph::factory('tx_pbimagegraph_Marker_'.ucfirst($strType), $intAxis);
+										break;
 									default:
 										$objArrayMarker[$strKey] =& tx_pbimagegraph::factory('tx_pbimagegraph_Marker_'.ucfirst($strType));
 								}
 								tx_pbimagegraph_ts::setMarkerProperties($objArrayMarker[$strKey],$arrConf['marker.'][$strKey.'.']);
 								tx_pbimagegraph_ts::setElementProperties($objArrayMarker[$strKey],$arrConf['marker.'][$strKey.'.']);
-								$objMarker->add($objArrayMarker[$strKey]);
+								if ($arrConf['marker.'][$strKey.'.']['pointing']) {
+									$objArrayPointing =& $objMarker->addNew('tx_pbimagegraph_Marker_Pointing_'.ucfirst($arrConf['marker.'][$strKey.'.']['pointing']), array($arrConf['marker.'][$strKey.'.']['pointing.']['radius'], $objArrayMarker[$strKey]));		
+									$objArraySetMarker =& $objArrayPointing;
+								} else {
+									$objArraySetMarker =& $objArrayMarker[$strKey];
+								}
+								$objMarker->add($objArraySetMarker);
 							}
 						}
 					}
@@ -629,6 +640,13 @@ class tx_pbimagegraph_ts {
 				$objSetMarker =& $objPointing;
 			} else {
 				$objSetMarker =& $objMarker;
+			}
+			if ($arrConf['marker.']['secondaryMarker']) {
+				//TODO Add more markers to this
+				$objSecondaryMarker =& $objRef->addNew('tx_pbimagegraph_Marker_'.ucfirst($arrConf['marker.']['secondaryMarker']));
+				tx_pbimagegraph_ts::setMarkerProperties($objSecondaryMarker,$arrConf['marker.']['secondaryMarker.']);
+				tx_pbimagegraph_ts::setElementProperties($objSecondaryMarker,$arrConf['marker.']['secondaryMarker.']);
+				$objSetMarker->setSecondaryMarker(& $objSecondaryMarker);
 			}
 			$objRef->setMarker($objSetMarker);
 		}
@@ -1196,7 +1214,8 @@ class tx_pbimagegraph_ts {
 					$objRef->setSize($strValue);
 					break;
 				case 'secondaryMarker':
-					//$objRef->setSecondaryMarker(& $secondaryMarker);
+					//$objSecondaryMarker = tx_pbimagegraph_ts::setMarker(&$objRef,$arrConf['secondaryMarker.']);
+					//$objRef->setSecondaryMarker(& $objSecondaryMarker);
 					break;
 				case 'maxRadius':
 					$objRef->setMaxRadius($strValue);
